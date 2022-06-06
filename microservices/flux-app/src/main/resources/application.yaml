@@ -1,0 +1,39 @@
+server:
+  port: 8086
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/rest_organization
+    username: postgres
+    password: erferferf
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+#  influx:
+#    metrics:
+#      export:
+#        enabled: true
+#        step: PT10S
+#        read-timeout: PT30S
+#        token: "nNOQWUSmpVmxX2Gd9_zH7NkY_bhHV31z_H3JN0XkzQ-dqklzbJ1G9hs_uKIwJM5IkUvHTjzUvlRaAp8-FkLXxA=="
+#        org: "jprofiler"
+#        bucket: "jprofiler"
+#        uri: "http://localhost:8086"
+#        batch-size: 20000

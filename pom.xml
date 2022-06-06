@@ -11,6 +11,7 @@
     <modules>
         <module>microservices</module>
         <module>components</module>
+        <module>jprofiler-toolbox</module>
     </modules>
 
     <properties>

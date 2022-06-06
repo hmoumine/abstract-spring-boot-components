@@ -11,9 +11,7 @@
 
     <artifactId>infrastructure</artifactId>
 
-    <modules>
-        <module>adapter-persistence-data-jpa</module>
-    </modules>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
