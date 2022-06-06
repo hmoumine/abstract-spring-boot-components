@@ -1,13 +1,15 @@
-package org.example.jprofiler.service.serviceabstractions.crudserviceadapter.adapter;
+package org.example.jprofiler.service.serviceabstractions.crudreactiveserviceadapter.processing;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.example.codefox.jprofiler.components.infrastructure.spiport.spi.IDefaultPersistPort;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.jprofiler.jprofilertoolbox.constants.exceptions.EntityMappingException;
+import org.example.jprofiler.jprofilertoolbox.constants.exceptions.EntityNotFoundException;
 import org.example.jprofiler.jprofilertoolbox.constants.exceptions.EntitySaveException;
 import org.example.jprofiler.service.serviceabstractions.apiserviceadapter.functional.IFunctionalMapper;
-import org.example.jprofiler.service.serviceabstractions.crudserviceadapter.spi.ICrudRestServicePort;
+import org.example.jprofiler.service.serviceabstractions.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,12 +23,12 @@ import java.util.stream.StreamSupport;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-public abstract class ACrudRestRestServiceAdapter<E, ID, F>
-        implements ICrudRestServicePort<E, ID, F, Iterable<E>, Optional<E>> {
+public abstract class DefaultServiceReactorProcessor<E, ID, F>
+        implements ICrudReactiveServiceCrudProcessor<E, ID, F, Flux<E>, Mono<E>> {
 
-    private IDefaultPersistPort<E, ID, Iterable<E>, Optional<E>> iDefaultPersistPort;
+    private IDefaultPersistPort<E, ID, Flux<E>, Mono<E>> iDefaultPersistPort;
 
-    private PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration;
+    private PropertyExceptionMessageConfiguration pemc;
 
     /**
      * Creates a new entity and returns created row as entity
@@ -35,14 +37,13 @@ public abstract class ACrudRestRestServiceAdapter<E, ID, F>
      * @return Created Entity
      */
     @Override
-    public Optional<E> create(final F e, final IFunctionalMapper<F, Optional<E>> functionalMapper) {
-        return Optional.of(e)
-                .flatMap(functionalMapper)
+    public Mono<E> create(final F e, final IFunctionalMapper<F, Mono<E>> functionalMapper) {
+        return functionalMapper.map(e)
+                .onErrorResume(throwable -> Mono.error(
+                        new EntityMappingException(pemc.getEntityMappingException(), throwable)))
                 .flatMap(elt -> this.iDefaultPersistPort.create(elt))
-                .or(() -> {
-                    throw new EntitySaveException(
-                            propertyExceptionMessageConfiguration.getEntitySaveException());
-                });
+                .onErrorResume(throwable -> Mono.error(
+                        new EntitySaveException(pemc.getEntitySaveException(), throwable)));
     }
 
     /**
@@ -53,10 +54,10 @@ public abstract class ACrudRestRestServiceAdapter<E, ID, F>
      * @return Iterable of created entities
      */
     @Override
-    public Iterable<E> createAll(final Iterable<F> eIterable, final IFunctionalMapper<F, Stream<E>> functionalMapper) {
-        Set<E> mappedDtos = StreamSupport.stream(eIterable.spliterator(), true)
-                     .flatMap(functionalMapper)
-                     .collect(Collectors.toSet());
+    public Flux<E> createAll(final Iterable<F> eIterable, final IFunctionalMapper<F, Stream<E>> functionalMapper) {
+        final Set<E> mappedDtos = StreamSupport.stream(eIterable.spliterator(), true)
+                .flatMap(functionalMapper)
+                .collect(Collectors.toSet());
         return iDefaultPersistPort.createAll(mappedDtos);
     }
 
@@ -69,14 +70,14 @@ public abstract class ACrudRestRestServiceAdapter<E, ID, F>
      * @return Updated entity
      */
     @Override
-    public Optional<E> update(final F e, final ID id, final IFunctionalMapper<E, Optional<E>> functionalMapper) {
+    public Mono<E> update(final F e, final ID id, final IFunctionalMapper<E, Mono<E>> functionalMapper) {
         return this.iDefaultPersistPort.getById(id)
                 .flatMap(functionalMapper)
+                .onErrorResume(throwable -> Mono.error(
+                        new EntityMappingException(pemc.getEntityMappingException(), throwable)))
                 .flatMap(flatted -> this.iDefaultPersistPort.update(flatted))
-                .or(() -> {
-                    throw new EntityNotFoundException(
-                            propertyExceptionMessageConfiguration.getEntityIdNotFoundException());
-                });
+                .onErrorResume(throwable -> Mono.error(
+                        new EntityNotFoundException(pemc.getEntityIdNotFoundException(), throwable)));
     }
 
     /**
@@ -86,7 +87,7 @@ public abstract class ACrudRestRestServiceAdapter<E, ID, F>
      * @return Identified entity as optional
      */
     @Override
-    public Optional<E> getById(final ID id) {
+    public Mono<E> getById(final ID id) {
         return this.iDefaultPersistPort.getById(id);
     }
 
@@ -96,7 +97,7 @@ public abstract class ACrudRestRestServiceAdapter<E, ID, F>
      * @return Iterable of all entities
      */
     @Override
-    public Iterable<E> getAll() {
+    public Flux<E> getAll() {
         return this.iDefaultPersistPort.getAll();
     }
 
@@ -108,10 +109,8 @@ public abstract class ACrudRestRestServiceAdapter<E, ID, F>
     @Override
     public void deleteById(final ID id) {
         this.iDefaultPersistPort.getById(id)
-                .ifPresentOrElse(
-                        elt -> this.iDefaultPersistPort.delete(elt),
-                        () -> new EntityNotFoundException(
-                                propertyExceptionMessageConfiguration.getEntityIdNotFoundException()));
+                .switchIfEmpty(Mono.error(new EntityNotFoundException(pemc.getEntityIdNotFoundException())))
+                .doOnNext(elt -> this.iDefaultPersistPort.delete(elt));
     }
 
 }

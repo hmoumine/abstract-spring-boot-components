@@ -1,6 +1,6 @@
 package org.example.jprofiler.service.serviceabstractions.crudserviceadapter.spi;
 
-import org.example.jprofiler.service.serviceabstractions.apiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.jprofiler.service.serviceabstractions.apiserviceadapter.processing.IServiceCrudProcessor;
 
 /**
  * Interface {@code ICrudServicePort} provides [...]
@@ -11,7 +11,7 @@ import org.example.jprofiler.service.serviceabstractions.apiserviceadapter.spi.I
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
-public interface ICrudRestServicePort<E, ID, F, MULTI, MONO> extends IDefaultCrudServicePort<E, ID, F, MULTI, MONO> {
+public interface ICrudRestServiceCrudProcessor<E, ID, F, MULTI, MONO> extends IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
 
 
 }
