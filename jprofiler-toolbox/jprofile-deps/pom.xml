@@ -2,40 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jprofiler-toolbox</artifactId>
+        <groupId>org.example.codefox</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example.codefox</groupId>
-    <artifactId>jprofiler</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-
-    <modules>
-        <module>microservices</module>
-        <module>components</module>
-        <module>jprofiler-toolbox</module>
-    </modules>
+    <artifactId>jprofile-deps</artifactId>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-        <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
-        <spring-boot.version>3.0.0-SNAPSHOT</spring-boot.version>
-
-        <javafaker.version>1.0.2</javafaker.version>
-        <lombok.version>1.18.24</lombok.version>
-        <reactor-core.version>3.5.0-M2</reactor-core.version>
-        <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
-
-        <adapter-persistence-data-jpa.version>1.0-SNAPSHOT</adapter-persistence-data-jpa.version>
-        <domain-pole.version>1.0-SNAPSHOT</domain-pole.version>
-        <rest-controller-adapter.version>1.0-SNAPSHOT</rest-controller-adapter.version>
-        <spi-persistence-port.version>1.0-SNAPSHOT</spi-persistence-port.version>
-        <spi-service-adapter.version>1.0-SNAPSHOT</spi-service-adapter.version>
-        <spi-controller-adapter.version>1.0-SNAPSHOT</spi-controller-adapter.version>
-        <spring-app-message-property-starter.version>1.0-SNAPSHOT</spring-app-message-property-starter.version>
-        <toolbox-constants.version>1.0-SNAPSHOT</toolbox-constants.version>
-
     </properties>
 
     <dependencyManagement>
@@ -51,13 +29,13 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${org.mapstruct.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.javafaker</groupId>
@@ -68,88 +46,51 @@
                 <groupId>org.example.codefox</groupId>
                 <artifactId>toolbox-constants</artifactId>
                 <version>${toolbox-constants.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>domain-pole</artifactId>
                 <version>${domain-pole.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>rest-controller-adapter</artifactId>
                 <version>${rest-controller-adapter.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>spi-persistence-port</artifactId>
                 <version>${spi-persistence-port.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>adapter-persistence-data-jpa</artifactId>
                 <version>${adapter-persistence-data-jpa.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>spring-app-message-property-starter</artifactId>
                 <version>${spring-app-message-property-starter.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>spi-controller-adapter</artifactId>
                 <version>${spi-controller-adapter.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>spi-service-adapter</artifactId>
                 <version>${spi-service-adapter.version}</version>
-                <scope>import</scope>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>

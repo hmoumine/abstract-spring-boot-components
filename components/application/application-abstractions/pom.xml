@@ -11,6 +11,7 @@
 
     <artifactId>application-abstractions</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>spi-controller-adapter</module>
         <module>adapter-reactive-controller</module>

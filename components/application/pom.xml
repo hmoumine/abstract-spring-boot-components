@@ -11,6 +11,7 @@
 
     <artifactId>application</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>application-abstractions</module>
     </modules>

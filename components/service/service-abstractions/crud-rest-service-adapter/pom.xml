@@ -14,9 +14,6 @@
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <spring-app-message-property-starter.version>1.0-SNAPSHOT</spring-app-message-property-starter.version>
-        <adapter-persistence-data-jpa.version>1.0-SNAPSHOT</adapter-persistence-data-jpa.version>
-        <spi-service-adapter.version>1.0-SNAPSHOT</spi-service-adapter.version>
     </properties>
 
     <dependencies>
@@ -33,29 +30,5 @@
             <artifactId>spi-service-adapter</artifactId>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.example.codefox</groupId>
-                <artifactId>adapter-persistence-data-jpa</artifactId>
-                <version>${adapter-persistence-data-jpa.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.example.codefox</groupId>
-                <artifactId>spring-app-message-property-starter</artifactId>
-                <version>${spring-app-message-property-starter.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.example.codefox</groupId>
-                <artifactId>spi-service-adapter</artifactId>
-                <version>${spi-service-adapter.version}</version>
-                <scope>compile</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
 </project>

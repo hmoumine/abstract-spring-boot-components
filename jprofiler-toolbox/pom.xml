@@ -15,6 +15,7 @@
         <module>spring-app-message-property-starter</module>
         <module>toolbox-constants</module>
         <module>spring-app-datagen-faker-starter</module>
+        <module>jprofile-deps</module>
     </modules>
 
     <properties>
