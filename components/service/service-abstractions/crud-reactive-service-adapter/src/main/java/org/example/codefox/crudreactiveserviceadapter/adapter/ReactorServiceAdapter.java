@@ -1,9 +1,9 @@
 package org.example.codefox.crudreactiveserviceadapter.adapter;
 
-import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

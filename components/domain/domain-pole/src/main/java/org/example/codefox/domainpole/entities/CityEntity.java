@@ -7,13 +7,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 @Entity(name = "city")
 @Getter
-@Setter
+@SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class CityEntity extends BaseEntity {

@@ -1,4 +1,4 @@
-package org.example.codefox.apiserviceadapter.functional;
+package org.example.codefox.spiserviceadapter.functional;
 
 import java.util.function.Function;
 

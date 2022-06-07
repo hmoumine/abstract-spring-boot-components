@@ -10,7 +10,7 @@ public interface ServiceMapper {
 
     ServiceEntity toEntity(final Service serviceDto);
 
-    @Mapping(target = "id", source = "id")
+    @Mapping(target = "id", source = "serviceEntity.id")
     Service toDto(final ServiceEntity serviceEntity);
 
 }

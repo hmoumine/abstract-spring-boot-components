@@ -5,10 +5,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity(name = "person")
 @Getter
-@Setter
+@SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class PersonEntity extends BaseEntity {

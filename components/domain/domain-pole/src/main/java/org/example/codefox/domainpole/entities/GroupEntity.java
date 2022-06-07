@@ -7,13 +7,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 @Entity(name = " group")
 @Getter
-@Setter
+@SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class GroupEntity extends BaseEntity {

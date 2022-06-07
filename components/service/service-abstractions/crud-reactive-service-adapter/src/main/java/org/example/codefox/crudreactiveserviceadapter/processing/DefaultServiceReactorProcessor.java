@@ -1,13 +1,13 @@
 package org.example.codefox.crudreactiveserviceadapter.processing;
 
-import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.toolboxconstants.exceptions.EntityMappingException;
 import org.example.codefox.toolboxconstants.exceptions.EntityNotFoundException;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

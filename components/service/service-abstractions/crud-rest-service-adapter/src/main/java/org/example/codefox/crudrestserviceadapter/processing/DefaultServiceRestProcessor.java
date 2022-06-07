@@ -4,8 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudrestserviceadapter.spi.ICrudRestServiceCrudProcessor;
 
 import java.util.Optional;

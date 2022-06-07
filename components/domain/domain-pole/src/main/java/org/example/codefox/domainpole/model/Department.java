@@ -11,7 +11,6 @@ import lombok.experimental.SuperBuilder;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine?originalSubdomain=fr">LinkedIn Profile</a>
  */
 @Getter
-@Setter
 @NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)

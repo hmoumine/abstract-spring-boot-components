@@ -1,4 +1,4 @@
-package org.example.codefox.apiserviceadapter.spi;
+package org.example.codefox.spiserviceadapter.spi;
 
 /**
  * Interface {@code IDefaultCrudServicePort} provides [...]

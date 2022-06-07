@@ -10,7 +10,7 @@ public interface LocationMapper {
 
     LocationEntity toEntity(final Location locationDto);
 
-    @Mapping(target = "id", source = "id")
+    @Mapping(target = "id", source = "locationEntity.id")
     Location toDto(final LocationEntity locationEntity);
 
 }

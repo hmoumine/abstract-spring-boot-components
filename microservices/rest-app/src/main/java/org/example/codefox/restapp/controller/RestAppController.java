@@ -2,7 +2,7 @@ package org.example.codefox.restapp.controller;
 
 import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.model.Pole;
-import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.example.codefox.restcontrolleradapter.adapter.DefaultRestControllerAdapter;
 import org.springframework.web.bind.annotation.RequestMapping;
 

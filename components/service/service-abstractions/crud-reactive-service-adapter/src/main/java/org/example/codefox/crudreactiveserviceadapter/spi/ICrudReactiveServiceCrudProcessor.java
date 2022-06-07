@@ -1,6 +1,6 @@
 package org.example.codefox.crudreactiveserviceadapter.spi;
 
-import org.example.codefox.apiserviceadapter.processing.IServiceCrudProcessor;
+import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 
 /**
  * Interface {@code ICrudServicePort} provides [...]

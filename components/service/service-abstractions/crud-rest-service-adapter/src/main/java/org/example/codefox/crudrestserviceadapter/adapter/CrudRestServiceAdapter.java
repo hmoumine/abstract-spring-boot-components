@@ -1,9 +1,9 @@
 package org.example.codefox.crudrestserviceadapter.adapter;
 
-import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.processing.IServiceCrudProcessor;
-import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
+import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

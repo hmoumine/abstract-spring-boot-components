@@ -1,7 +1,7 @@
 package org.example.codefox.restcontrolleradapter.adapter;
 
 import org.example.codefox.spicontrolleradapter.spi.IDefaultControllerPort;
-import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

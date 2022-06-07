@@ -1,11 +1,12 @@
 package org.example.codefox.restapp.config;
 
-import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.mapper.PoleMapper;
 import org.example.codefox.domainpole.model.Pole;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Optional;
@@ -21,6 +22,7 @@ import java.util.stream.Stream;
  */
 
 @Configuration
+@ComponentScan({"org.example.codefox.domainpole.mapper"})
 public class FunctionalConfig {
 
     @Bean

@@ -16,7 +16,6 @@ import java.util.UUID;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine?originalSubdomain=fr">LinkedIn Profile</a>
  */
 @Getter
-@Setter
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)

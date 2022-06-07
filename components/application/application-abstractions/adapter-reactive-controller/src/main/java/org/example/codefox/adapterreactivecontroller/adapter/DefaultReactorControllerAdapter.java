@@ -1,6 +1,6 @@
 package org.example.codefox.adapterreactivecontroller.adapter;
 
-import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.example.codefox.spicontrolleradapter.spi.IDefaultControllerPort;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

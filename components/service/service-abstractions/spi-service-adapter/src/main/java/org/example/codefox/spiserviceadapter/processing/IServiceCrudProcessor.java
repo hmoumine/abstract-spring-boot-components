@@ -1,7 +1,7 @@
-package org.example.codefox.apiserviceadapter.processing;
+package org.example.codefox.spiserviceadapter.processing;
 
-import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 
 import java.util.stream.Stream;
 
