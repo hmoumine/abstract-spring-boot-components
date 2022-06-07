@@ -15,6 +15,7 @@
     <modules>
         <module>crud-rest-service-adapter</module>
         <module>spi-service-adapter</module>
+        <module>crud-reactive-service-adapter</module>
     </modules>
 
     <properties>

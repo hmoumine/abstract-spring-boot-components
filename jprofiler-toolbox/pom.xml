@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-app-message-property-starter</module>
-        <module>constants</module>
+        <module>toolbox-constants</module>
         <module>spring-app-datagen-faker-starter</module>
     </modules>
 

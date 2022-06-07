@@ -11,22 +11,21 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.example.codefox</groupId>
     <artifactId>crud-reactive-service-adapter</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
         <reactor-core.version>3.5.0-M2</reactor-core.version>
+        <spring-app-message-property-starter.version>1.0-SNAPSHOT</spring-app-message-property-starter.version>
+        <spi-service-adapter.version>1.0-SNAPSHOT</spi-service-adapter.version>
+        <spi-persistence-port.version>1.0-SNAPSHOT</spi-persistence-port.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.example.codefox</groupId>
-            <artifactId>spi-persistence-adapter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -34,16 +33,39 @@
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spring-app-message-property-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spi-service-adapter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spi-persistence-port</artifactId>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spring-app-message-property-starter</artifactId>
+                <version>${spring-app-message-property-starter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spi-service-adapter</artifactId>
+                <version>${spi-service-adapter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spi-persistence-port</artifactId>
+                <version>${spi-persistence-port.version}</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

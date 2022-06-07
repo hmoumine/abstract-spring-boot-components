@@ -10,12 +10,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.example.codefox</groupId>
     <artifactId>adapter-reactive-controller</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
+        <spi-controller-adapter.version>1.0-SNAPSHOT</spi-controller-adapter.version>
+        <spi-service-adapter.version>1.0-SNAPSHOT</spi-service-adapter.version>
     </properties>
 
     <dependencies>
@@ -26,16 +30,29 @@
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spi-controller-adapter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spi-service-adapter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spi-controller-adapter</artifactId>
+                <version>${spi-controller-adapter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spi-service-adapter</artifactId>
+                <version>${spi-service-adapter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

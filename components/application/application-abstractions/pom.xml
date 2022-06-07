@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>spi-controller-adapter</module>
-        <module>adapter-rest-controller</module>
+        <module>adapter-reactive-controller</module>
+        <module>rest-controller-adapter</module>
     </modules>
 
     <properties>

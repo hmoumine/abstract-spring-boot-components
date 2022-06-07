@@ -4,8 +4,6 @@ import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import static org.example.jprofiler.jprofilertoolbox.constants.messages.JpaExceptionConstants.*;
-
 /**
  * The class Property exception message configuration.
  *
