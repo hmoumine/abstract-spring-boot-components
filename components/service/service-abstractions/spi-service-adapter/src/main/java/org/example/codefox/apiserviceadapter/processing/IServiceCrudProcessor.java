@@ -1,7 +1,7 @@
 package org.example.codefox.apiserviceadapter.processing;
 
+import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ITupleArgFunctionalInterface;
 
 import java.util.stream.Stream;
 
@@ -48,7 +48,7 @@ public interface IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
      * @param id Associated identifier of entity
      * @return Updated entity
      */
-    MONO update(F e, ID id, final ITupleArgFunctionalInterface<F, MONO> functionalMapper);
+    MONO update(F e, ID id, final IBiArgFunctionalInterface<F, MONO> functionalMapper);
 
     /**
      * Retrieves an entity by identifier from database as optional entity

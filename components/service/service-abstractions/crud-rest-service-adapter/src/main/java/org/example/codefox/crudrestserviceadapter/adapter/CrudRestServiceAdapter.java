@@ -1,7 +1,7 @@
 package org.example.codefox.crudrestserviceadapter.adapter;
 
+import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ITupleArgFunctionalInterface;
 import org.example.codefox.apiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +27,14 @@ public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort
 
     private final ISingleArgFunctionalInterface<F, Stream<E>> dtoToStreamEntityFunc;
 
-    private final ITupleArgFunctionalInterface<F, Optional<E>> entityToEntityFunc;
+    private final IBiArgFunctionalInterface<F, Optional<E>> entityToEntityFunc;
 
     @Autowired
     public CrudRestServiceAdapter(
             final IServiceCrudProcessor<E, ID, F, Iterable<E>, Optional<E>> iServiceCrudProcessor,
             final ISingleArgFunctionalInterface<F, Optional<E>> dtoToOptionalEntityFunc,
             final ISingleArgFunctionalInterface<F, Stream<E>> dtoToStreamEntityFunc,
-            final ITupleArgFunctionalInterface<F, Optional<E>> entityToEntityFunc) {
+            final IBiArgFunctionalInterface<F, Optional<E>> entityToEntityFunc) {
         this.iServiceCrudProcessor = iServiceCrudProcessor;
         this.dtoToOptionalEntityFunc = dtoToOptionalEntityFunc;
         this.dtoToStreamEntityFunc = dtoToStreamEntityFunc;

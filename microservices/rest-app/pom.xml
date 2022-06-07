@@ -22,11 +22,24 @@
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>domain-pole</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>rest-controller-adapter</artifactId>
+            <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spi-service-adapter</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spi-controller-adapter</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

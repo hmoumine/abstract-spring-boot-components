@@ -29,6 +29,7 @@
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spi-persistence-port</artifactId>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

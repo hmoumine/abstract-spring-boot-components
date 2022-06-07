@@ -18,6 +18,8 @@
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
+        <java-maven-compiler-plugin.version>17</java-maven-compiler-plugin.version>
+
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
         <spring-boot.version>3.0.0-SNAPSHOT</spring-boot.version>
@@ -37,6 +39,15 @@
         <toolbox-constants.version>1.0-SNAPSHOT</toolbox-constants.version>
 
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencyManagement>
         <dependencies>

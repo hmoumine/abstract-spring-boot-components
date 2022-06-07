@@ -1,7 +1,7 @@
 package org.example.codefox.apiserviceadapter.functional;
 
 /**
- * Interface {@code ITupleArgFunctionalInterface} provides [...]
+ * Interface {@code IBiArgFunctionalInterface} provides [...]
  *
  * @author Hamza MOUMINE
  * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
@@ -10,7 +10,7 @@ package org.example.codefox.apiserviceadapter.functional;
  */
 
 @FunctionalInterface
-public interface ITupleArgFunctionalInterface<E, F> {
+public interface IBiArgFunctionalInterface<E, F> {
 
     F apply(E src, F dest);
 }

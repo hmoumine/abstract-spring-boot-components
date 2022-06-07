@@ -1,10 +1,10 @@
 package org.example.codefox.restapp.config;
 
+import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.mapper.PoleMapper;
 import org.example.codefox.domainpole.model.Pole;
-import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ITupleArgFunctionalInterface;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,11 +34,9 @@ public class FunctionalConfig {
     }
 
     @Bean
-    public ITupleArgFunctionalInterface<PoleEntity, Optional<PoleEntity>> entityToEntityFunc(final PoleMapper poleMapper) {
+    public IBiArgFunctionalInterface<PoleEntity, Optional<PoleEntity>> entityToEntityFunc(final PoleMapper poleMapper) {
         return (poleEntitySource, poleEntityDestination) -> {
-            if (poleEntityDestination.isPresent()) {
-                poleMapper.update(poleEntityDestination.get(), poleEntitySource);
-            }
+            poleEntityDestination.ifPresent(poleEntity -> poleMapper.update(poleEntity, poleEntitySource));
             return poleEntityDestination;
         };
     }

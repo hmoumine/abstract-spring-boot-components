@@ -25,10 +25,12 @@
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spi-controller-adapter</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>spi-service-adapter</artifactId>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

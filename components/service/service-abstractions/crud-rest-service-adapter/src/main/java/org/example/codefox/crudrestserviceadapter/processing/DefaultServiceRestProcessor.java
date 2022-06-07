@@ -5,7 +5,7 @@ import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
 import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ITupleArgFunctionalInterface;
+import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudrestserviceadapter.spi.ICrudRestServiceCrudProcessor;
 
 import java.util.Optional;
@@ -70,7 +70,7 @@ public class DefaultServiceRestProcessor<E, ID, F>
      * @return Updated entity
      */
     @Override
-    public Optional<E> update(final F e, final ID id, final ITupleArgFunctionalInterface<F, Optional<E>> functionalMapper) {
+    public Optional<E> update(final F e, final ID id, final IBiArgFunctionalInterface<F, Optional<E>> functionalMapper) {
         return this.iDefaultPersistPort.getById(id)
                 .flatMap(elt -> functionalMapper.apply(e, Optional.of(elt)))
                 .flatMap(flatted -> this.iDefaultPersistPort.update(flatted))

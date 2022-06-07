@@ -1,8 +1,8 @@
 package org.example.codefox.crudreactiveserviceadapter.adapter;
 
+import org.example.codefox.apiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
 import org.example.codefox.apiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.apiserviceadapter.functional.ITupleArgFunctionalInterface;
 import org.example.codefox.apiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -27,12 +27,12 @@ public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<
 
     private final ISingleArgFunctionalInterface<F, Stream<E>> dtoToFluxEntityFunc;
 
-    private final ITupleArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc;
+    private final IBiArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc;
 
     public ReactorServiceAdapter(final ICrudReactiveServiceCrudProcessor<E, ID, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor,
                                  final ISingleArgFunctionalInterface<F, Mono<E>> dtoToMonoEntityFunc,
                                  final ISingleArgFunctionalInterface<F, Stream<E>> dtoToFluxEntityFunc,
-                                 final ITupleArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc) {
+                                 final IBiArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc) {
         this.iCrudReactiveServiceCrudProcessor = iCrudReactiveServiceCrudProcessor;
         this.dtoToFluxEntityFunc = dtoToFluxEntityFunc;
         this.dtoToMonoEntityFunc = dtoToMonoEntityFunc;
