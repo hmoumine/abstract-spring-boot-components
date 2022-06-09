@@ -18,11 +18,12 @@
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <java-maven-compiler-plugin.version>17</java-maven-compiler-plugin.version>
 
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <spring-boot-maven-plugin.version>2.6.7</spring-boot-maven-plugin.version>
         <spring-boot.version>3.0.0-SNAPSHOT</spring-boot.version>
+        <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
 
         <javafaker.version>1.0.2</javafaker.version>
         <lombok.version>1.18.24</lombok.version>
@@ -30,11 +31,15 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 
         <adapter-persistence-data-jpa.version>1.0-SNAPSHOT</adapter-persistence-data-jpa.version>
+        <crud-rest-service-adapter.version>1.0-SNAPSHOT</crud-rest-service-adapter.version>
+        <domain-commons.version>1.0-SNAPSHOT</domain-commons.version>
         <domain-pole.version>1.0-SNAPSHOT</domain-pole.version>
         <rest-controller-adapter.version>1.0-SNAPSHOT</rest-controller-adapter.version>
         <spi-persistence-port.version>1.0-SNAPSHOT</spi-persistence-port.version>
         <spi-service-adapter.version>1.0-SNAPSHOT</spi-service-adapter.version>
         <spi-controller-adapter.version>1.0-SNAPSHOT</spi-controller-adapter.version>
+        <spring-app-abstract-crud-starter.version>1.0-SNAPSHOT</spring-app-abstract-crud-starter.version>
+        <spring-app-custom-annotations.version>1.0-SNAPSHOT</spring-app-custom-annotations.version>
         <spring-app-message-property-starter.version>1.0-SNAPSHOT</spring-app-message-property-starter.version>
         <toolbox-constants.version>1.0-SNAPSHOT</toolbox-constants.version>
 
@@ -52,6 +57,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring framework dependencies -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -59,6 +65,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-security-oauth2.version}</version>
+            </dependency>
+
+            <!-- Mapping && annotation processors -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
@@ -71,10 +84,33 @@
                 <version>${lombok.version}</version>
                 <scope>compile</scope>
             </dependency>
+
+            <!-- Data generators -->
             <dependency>
                 <groupId>com.github.javafaker</groupId>
                 <artifactId>javafaker</artifactId>
                 <version>${javafaker.version}</version>
+            </dependency>
+
+            <!-- Resource/Auth server dependencies -->
+            <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>9.23</version>
+            </dependency>
+
+            <!-- Project Dependencies -->
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spring-app-abstract-crud-starter</artifactId>
+                <version>${spring-app-abstract-crud-starter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>spring-app-custom-annotations</artifactId>
+                <version>${spring-app-custom-annotations.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.example.codefox</groupId>
@@ -122,6 +158,18 @@
                 <groupId>org.example.codefox</groupId>
                 <artifactId>spi-service-adapter</artifactId>
                 <version>${spi-service-adapter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>crud-rest-service-adapter</artifactId>
+                <version>${crud-rest-service-adapter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>domain-commons</artifactId>
+                <version>${domain-commons.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>

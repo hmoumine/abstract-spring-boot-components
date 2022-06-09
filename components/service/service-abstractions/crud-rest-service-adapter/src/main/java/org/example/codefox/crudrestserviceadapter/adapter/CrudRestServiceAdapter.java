@@ -19,9 +19,9 @@ import java.util.stream.Stream;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 @Service
-public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<E, ID, F, Iterable<E>, Optional<E>> {
+public class CrudRestServiceAdapter<E, I, F> implements IDefaultCrudServicePort<E, I, F, Iterable<E>, Optional<E>> {
 
-    private final IServiceCrudProcessor<E, ID, F, Iterable<E>, Optional<E>> iServiceCrudProcessor;
+    private final IServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> iServiceCrudProcessor;
 
     private final ISingleArgFunctionalInterface<F, Optional<E>> dtoToOptionalEntityFunc;
 
@@ -31,7 +31,7 @@ public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort
 
     @Autowired
     public CrudRestServiceAdapter(
-            final IServiceCrudProcessor<E, ID, F, Iterable<E>, Optional<E>> iServiceCrudProcessor,
+            final IServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> iServiceCrudProcessor,
             final ISingleArgFunctionalInterface<F, Optional<E>> dtoToOptionalEntityFunc,
             final ISingleArgFunctionalInterface<F, Stream<E>> dtoToStreamEntityFunc,
             final IBiArgFunctionalInterface<F, Optional<E>> entityToEntityFunc) {
@@ -74,7 +74,7 @@ public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort
      * @return Updated entity
      */
     @Override
-    public Optional<E> update(final F e, final ID id) {
+    public Optional<E> update(final F e, final I id) {
         return this.iServiceCrudProcessor.update(e, id, this.entityToEntityFunc);
     }
 
@@ -85,7 +85,7 @@ public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort
      * @return Identified entity as optional
      */
     @Override
-    public Optional<E> getById(final ID id) {
+    public Optional<E> getById(final I id) {
         return this.iServiceCrudProcessor.getById(id);
     }
 
@@ -105,7 +105,7 @@ public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort
      * @param id Identifier of entity
      */
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final I id) {
         this.iServiceCrudProcessor.deleteById(id);
     }
 
@@ -116,7 +116,7 @@ public class CrudRestServiceAdapter<E, ID, F> implements IDefaultCrudServicePort
      * @param id Entity type identifier
      */
     @Override
-    public void delete(final F e, final ID id) {
+    public void delete(final F e, final I id) {
         this.iServiceCrudProcessor.delete(e, id);
     }
 }

@@ -20,21 +20,18 @@ management:
     prometheus:
       enabled: true
   endpoints:
+    enabled-by-default: true
     web:
       exposure:
-        include: health, metrics, prometheus
+        include: health, metrics, prometheus, mappings
   prometheus:
     metrics:
       export:
         enabled: true
-#  influx:
-#    metrics:
-#      export:
-#        enabled: true
-#        step: PT10S
-#        read-timeout: PT30S
-#        token: "nNOQWUSmpVmxX2Gd9_zH7NkY_bhHV31z_H3JN0XkzQ-dqklzbJ1G9hs_uKIwJM5IkUvHTjzUvlRaAp8-FkLXxA=="
-#        org: "jprofiler"
-#        bucket: "jprofiler"
-#        uri: "http://localhost:8086"
-#        batch-size: 20000
+
+jpa:
+  repository:
+    packages: org.example.codefox.domainpole.repositories
+    ms:
+      entity: org.example.codefox.domainpole.entities
+

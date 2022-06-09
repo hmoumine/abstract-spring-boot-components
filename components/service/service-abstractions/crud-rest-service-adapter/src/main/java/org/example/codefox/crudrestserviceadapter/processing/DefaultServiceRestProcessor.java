@@ -6,7 +6,8 @@ import org.example.codefox.jprofilestarters.springappmessagepropertystarter.mess
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
-import org.example.codefox.crudrestserviceadapter.spi.ICrudRestServiceCrudProcessor;
+import org.example.codefox.crudrestserviceadapter.spi.IRestServiceCrudProcessor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Set;
@@ -22,13 +23,21 @@ import java.util.stream.StreamSupport;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-public class DefaultServiceRestProcessor<E, ID, F>
-        implements ICrudRestServiceCrudProcessor<E, ID, F, Iterable<E>, Optional<E>> {
+@Service
+public class DefaultServiceRestProcessor<E, I, F>
+        implements IRestServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> {
 
-    private IDefaultPersistPort<E, ID, Iterable<E>, Optional<E>> iDefaultPersistPort;
+    private final IDefaultPersistPort<E, I, Iterable<E>, Optional<E>> iDefaultPersistPort;
 
-    private PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration;
+    private final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration;
 
+    public DefaultServiceRestProcessor(
+            final IDefaultPersistPort<E, I, Iterable<E>, Optional<E>> defaultPersistPort,
+            final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration
+    ) {
+        this.iDefaultPersistPort = defaultPersistPort;
+        this.propertyExceptionMessageConfiguration = propertyExceptionMessageConfiguration;
+    }
     /**
      * Creates a new entity and returns created row as entity
      *
@@ -39,7 +48,7 @@ public class DefaultServiceRestProcessor<E, ID, F>
     public Optional<E> create(final F e, final ISingleArgFunctionalInterface<F, Optional<E>> functionalMapper) {
         return Optional.of(e)
                 .flatMap(functionalMapper)
-                .flatMap(elt -> this.iDefaultPersistPort.create(elt))
+                .flatMap(this.iDefaultPersistPort::create)
                 .or(() -> {
                     throw new EntitySaveException(
                             propertyExceptionMessageConfiguration.getEntitySaveException());
@@ -70,10 +79,10 @@ public class DefaultServiceRestProcessor<E, ID, F>
      * @return Updated entity
      */
     @Override
-    public Optional<E> update(final F e, final ID id, final IBiArgFunctionalInterface<F, Optional<E>> functionalMapper) {
+    public Optional<E> update(final F e, final I id, final IBiArgFunctionalInterface<F, Optional<E>> functionalMapper) {
         return this.iDefaultPersistPort.getById(id)
                 .flatMap(elt -> functionalMapper.apply(e, Optional.of(elt)))
-                .flatMap(flatted -> this.iDefaultPersistPort.update(flatted))
+                .flatMap(this.iDefaultPersistPort::update)
                 .or(() -> {
                     throw new EntityNotFoundException(
                             propertyExceptionMessageConfiguration.getEntityIdNotFoundException());
@@ -87,7 +96,7 @@ public class DefaultServiceRestProcessor<E, ID, F>
      * @return Identified entity as optional
      */
     @Override
-    public Optional<E> getById(final ID id) {
+    public Optional<E> getById(final I id) {
         return this.iDefaultPersistPort.getById(id);
     }
 
@@ -107,10 +116,10 @@ public class DefaultServiceRestProcessor<E, ID, F>
      * @param id Identifier of entity
      */
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final I id) {
         this.iDefaultPersistPort.getById(id)
                 .ifPresentOrElse(
-                        elt -> this.iDefaultPersistPort.delete(elt),
+                        this.iDefaultPersistPort::delete,
                         () -> new EntityNotFoundException(
                                 propertyExceptionMessageConfiguration.getEntityIdNotFoundException()));
     }
@@ -122,10 +131,10 @@ public class DefaultServiceRestProcessor<E, ID, F>
      * @param id Entity type identifier
      */
     @Override
-    public void delete(final F e, final ID id) { //FIXME Add Functional Interface
+    public void delete(final F e, final I id) {
         this.iDefaultPersistPort.getById(id)
                 .ifPresentOrElse(
-                        elt -> this.iDefaultPersistPort.delete(elt),
+                        this.iDefaultPersistPort::delete,
                         () -> new EntityNotFoundException(
                                 propertyExceptionMessageConfiguration.getEntityIdNotFoundException()));
     }

@@ -18,6 +18,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- Project Deps -->
         <dependency>
             <groupId>org.example.codefox</groupId>
@@ -31,15 +36,9 @@
         </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
-            <artifactId>spi-service-adapter</artifactId>
+            <artifactId>spring-app-abstract-crud-starter</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.example.codefox</groupId>
-            <artifactId>spi-controller-adapter</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

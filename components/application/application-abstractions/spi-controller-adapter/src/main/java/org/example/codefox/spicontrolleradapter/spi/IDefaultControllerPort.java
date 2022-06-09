@@ -12,7 +12,14 @@ import org.springframework.web.bind.annotation.*;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
-public interface IDefaultControllerPort<F, ID, MULTI, MONO> {
+/**
+ *
+ * @param <F> Entity type
+ * @param <I> Entity identifier type
+ * @param <M> Multiple entity container type
+ * @param <O> Single entity container
+ */
+public interface IDefaultControllerPort<F, I, M, O> {
 
     /**
      * Creates a new entity and returns created row as entity
@@ -21,7 +28,7 @@ public interface IDefaultControllerPort<F, ID, MULTI, MONO> {
      * @return Created Entity
      */
     @PostMapping(path = {"/public", ""}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    MONO create(@RequestBody final F e);
+    O create(@RequestBody final F e);
 
     /**
      * Creates a List of entities and returns an iterables of
@@ -31,7 +38,7 @@ public interface IDefaultControllerPort<F, ID, MULTI, MONO> {
      * @return Iterable of created entities
      */
     @PostMapping(path = {"/public/all", "/all"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    MULTI createAll(@RequestBody final Iterable<F> e);
+    M createAll(@RequestBody final Iterable<F> e);
 
     /**
      * Updates an existing entity
@@ -43,7 +50,7 @@ public interface IDefaultControllerPort<F, ID, MULTI, MONO> {
      * @return Updated entity
      */
     @PutMapping(path = {"/public/{id}", "/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    MONO update(@RequestBody F e, @PathVariable ID id);
+    O update(@RequestBody F e, @PathVariable I id);
 
     /**
      * Retrieves an entity by identifier from database as optional entity
@@ -51,24 +58,24 @@ public interface IDefaultControllerPort<F, ID, MULTI, MONO> {
      * @param id Identifier of entity
      * @return Identified entity as optional
      */
-    @GetMapping(path = {"/public/{id}", "/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    MONO getById(ID id);
+    @GetMapping(path = {"/public/{id}", "/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    O getById(I id);
 
     /**
      * Retrieves all entities on database as iterable
      *
      * @return Iterable of all entities
      */
-    @GetMapping(path = {"/public", ""}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    MULTI getAll();
+    @GetMapping(path = {"/public", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
+    M getAll();
 
     /**
      * Deletes an entity by identifier
      *
      * @param id Identifier of entity
      */
-    @DeleteMapping(path = {"/public/{id}", "/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    void deleteById(@PathVariable("id") ID id);
+    @DeleteMapping(path = {"/public/{id}", "/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    void deleteById(@PathVariable("id") I id);
 
     /**
      * Hard Delete of entity by comparing object values from associated entity object
@@ -76,5 +83,5 @@ public interface IDefaultControllerPort<F, ID, MULTI, MONO> {
      * @param e Entity object to remove
      */
     @DeleteMapping(path = {"/public/hard/{id}", "/hard/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    void delete(@RequestBody F e, @PathVariable("id") ID id);
+    void delete(@RequestBody F e, @PathVariable("id") I id);
 }

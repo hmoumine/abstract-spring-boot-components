@@ -11,7 +11,15 @@ import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
-public interface ICrudRestServiceCrudProcessor<E, ID, F, MULTI, MONO> extends IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
+/**
+ *
+ * @param <E> Entity type
+ * @param <I> Entity's identifier type
+ * @param <F> Entity's dto type
+ * @param <M> Multiple entities container type
+ * @param <O> Single entity container type
+ */
+public interface IRestServiceCrudProcessor<E, I, F, M, O> extends IServiceCrudProcessor<E, I, F, M, O> {
 
 
 }

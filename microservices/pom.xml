@@ -15,6 +15,7 @@
     <modules>
         <module>rest-app</module>
         <module>flux-app</module>
+        <module>resource-server-app</module>
     </modules>
 
     <properties>

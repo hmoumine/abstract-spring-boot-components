@@ -3,6 +3,7 @@ package org.example.codefox.restcontrolleradapter.adapter;
 import org.example.codefox.spicontrolleradapter.spi.IDefaultControllerPort;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  * Class {@code DefaultRestControllerAdapter} provides [...]
@@ -12,13 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-//FIXME Check Mapping /[a-z] for child
-public class DefaultRestControllerAdapter<F, ID, E> implements IDefaultControllerPort<F, ID, Iterable<E>, E> {
+@Controller
+public class DefaultRestControllerAdapter<F, I, E> implements IDefaultControllerPort<F, I, Iterable<E>, E> {
 
-    private final IDefaultCrudServicePort<E, ID, F, Iterable<E>, E> iDefaultCrudServicePort;
+    private final IDefaultCrudServicePort<E, I, F, Iterable<E>, E> iDefaultCrudServicePort;
 
     @Autowired
-    public DefaultRestControllerAdapter(final IDefaultCrudServicePort<E, ID, F, Iterable<E>, E> iDefaultCrudServicePort) {
+    public DefaultRestControllerAdapter(final IDefaultCrudServicePort<E, I, F, Iterable<E>, E> iDefaultCrudServicePort) {
         this.iDefaultCrudServicePort = iDefaultCrudServicePort;
     }
 
@@ -55,7 +56,7 @@ public class DefaultRestControllerAdapter<F, ID, E> implements IDefaultControlle
      * @return Updated entity
      */
     @Override
-    public E update(final F e, final ID id) {
+    public E update(final F e, final I id) {
         return this.iDefaultCrudServicePort.update(e, id);
     }
 
@@ -66,7 +67,7 @@ public class DefaultRestControllerAdapter<F, ID, E> implements IDefaultControlle
      * @return Identified entity as optional
      */
     @Override
-    public E getById(final ID id) {
+    public E getById(final I id) {
         return this.iDefaultCrudServicePort.getById(id);
     }
 
@@ -86,7 +87,7 @@ public class DefaultRestControllerAdapter<F, ID, E> implements IDefaultControlle
      * @param id Identifier of entity
      */
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final I id) {
         this.iDefaultCrudServicePort.deleteById(id);
     }
 
@@ -97,7 +98,7 @@ public class DefaultRestControllerAdapter<F, ID, E> implements IDefaultControlle
      * @param id Entity identifier type
      */
     @Override
-    public void delete(final F e, final ID id) {
+    public void delete(final F e, final I id) {
         this.iDefaultCrudServicePort.delete(e, id);
     }
 }
