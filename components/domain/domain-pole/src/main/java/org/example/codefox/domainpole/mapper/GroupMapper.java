@@ -5,8 +5,7 @@ import org.example.codefox.domainpole.entities.GroupEntity;
 import org.example.codefox.domainpole.model.Group;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public interface GroupMapper extends AbstractMapper<GroupEntity, Group> {
+public abstract class GroupMapper implements AbstractMapper<GroupEntity, Group> {
 
 }
 

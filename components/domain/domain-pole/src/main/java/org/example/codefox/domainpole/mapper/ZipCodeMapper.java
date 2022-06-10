@@ -5,7 +5,6 @@ import org.example.codefox.domainpole.entities.ZipCodeEntity;
 import org.example.codefox.domainpole.model.ZipCode;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public interface ZipCodeMapper extends AbstractMapper<ZipCodeEntity, ZipCode> {
+public abstract class ZipCodeMapper implements AbstractMapper<ZipCodeEntity, ZipCode> {
 
 }

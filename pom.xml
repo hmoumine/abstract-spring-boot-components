@@ -29,6 +29,7 @@
         <lombok.version>1.18.24</lombok.version>
         <reactor-core.version>3.5.0-M2</reactor-core.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <javax.persistence-api.version>2.2</javax.persistence-api.version>
 
         <adapter-persistence-data-jpa.version>1.0-SNAPSHOT</adapter-persistence-data-jpa.version>
         <crud-rest-service-adapter.version>1.0-SNAPSHOT</crud-rest-service-adapter.version>
@@ -50,9 +51,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin.version}</version>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencyManagement>
@@ -84,7 +93,11 @@
                 <version>${lombok.version}</version>
                 <scope>compile</scope>
             </dependency>
-
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>${javax.persistence-api.version}</version>
+            </dependency>
             <!-- Data generators -->
             <dependency>
                 <groupId>com.github.javafaker</groupId>

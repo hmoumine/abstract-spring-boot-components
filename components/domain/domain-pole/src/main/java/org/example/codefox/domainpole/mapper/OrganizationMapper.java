@@ -5,7 +5,6 @@ import org.example.codefox.domainpole.entities.OrganizationEntity;
 import org.example.codefox.domainpole.model.Organization;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public interface OrganizationMapper extends AbstractMapper<OrganizationEntity, Organization> {
+public abstract class OrganizationMapper implements AbstractMapper<OrganizationEntity, Organization> {
 
 }

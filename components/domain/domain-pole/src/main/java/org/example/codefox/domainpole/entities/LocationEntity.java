@@ -19,18 +19,20 @@ public class LocationEntity extends BaseEntity {
     private String address;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private CityEntity city;
+    private ServiceEntity service;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private DepartmentEntity department;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ZipCodeEntity zipCode;
 
     @OneToOne(cascade = CascadeType.ALL)
+    private CityEntity city;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private CountryEntity country;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private ServiceEntity service;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private DepartmentEntity department;
 
 }

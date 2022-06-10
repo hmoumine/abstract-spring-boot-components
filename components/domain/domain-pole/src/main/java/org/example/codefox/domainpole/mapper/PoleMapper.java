@@ -5,7 +5,6 @@ import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.model.Pole;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public interface PoleMapper extends AbstractMapper<PoleEntity, Pole> {
+public abstract class PoleMapper implements AbstractMapper<PoleEntity, Pole> {
 
 }

@@ -5,7 +5,6 @@ import org.example.codefox.domainpole.entities.ServiceEntity;
 import org.example.codefox.domainpole.model.Service;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public interface ServiceMapper extends AbstractMapper<ServiceEntity, Service> {
+public abstract class ServiceMapper implements AbstractMapper<ServiceEntity, Service> {
 
 }
