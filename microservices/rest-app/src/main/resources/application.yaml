@@ -29,9 +29,4 @@ management:
       export:
         enabled: true
 
-jpa:
-  repository:
-    packages: org.example.codefox.domainpole.repositories
-    ms:
-      entity: org.example.codefox.domainpole.entities
 

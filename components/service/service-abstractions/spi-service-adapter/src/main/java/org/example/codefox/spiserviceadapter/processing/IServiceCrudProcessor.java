@@ -5,22 +5,8 @@ import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInte
 
 import java.util.stream.Stream;
 
-/**
- * Interface {@code IServiceCrudProcessor} provides [...]
- *
- * @param <E> Entity type
- * @param <ID> Entity identifier type
- * @param <F> DTO's of entity type
- * @param <MULTI> Output Container type of entity
- * @param <MONO> Output single container type of entity
- *
- * @author Hamza MOUMINE
- * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
- * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
- * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
- */
 
-public interface IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
+public interface IServiceCrudProcessor<E, I, F, M, O> {
 
     /**
      * Creates a new entity and returns created row as entity
@@ -28,7 +14,7 @@ public interface IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
      * @param e Entity to save
      * @return Created Entity
      */
-    MONO create(final F e, final ISingleArgFunctionalInterface<F, MONO> functionalMapper);
+    O create(final F e, final ISingleArgFunctionalInterface<F, O> functionalMapper);
 
     /**
      * Creates a List of entities and returns an iterables of
@@ -37,7 +23,7 @@ public interface IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
      * @param e Iterable of entities to save
      * @return Iterable of created entities
      */
-    MULTI createAll(final Iterable<F> e, final ISingleArgFunctionalInterface<F, Stream<E>> functionalMapper);
+    M createAll(final Iterable<F> e, final ISingleArgFunctionalInterface<F, Stream<E>> functionalMapper);
 
     /**
      * Updates an existing entity
@@ -48,7 +34,7 @@ public interface IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
      * @param id Associated identifier of entity
      * @return Updated entity
      */
-    MONO update(F e, ID id, final IBiArgFunctionalInterface<F, MONO> functionalMapper);
+    O update(F e, I id, final IBiArgFunctionalInterface<F, O> functionalMapper);
 
     /**
      * Retrieves an entity by identifier from database as optional entity
@@ -56,26 +42,26 @@ public interface IServiceCrudProcessor<E, ID, F, MULTI, MONO> {
      * @param id Identifier of entity
      * @return Identified entity as optional
      */
-    MONO getById(ID id);
+    O getById(I id);
 
     /**
      * Retrieves all entities on database as iterable
      *
      * @return Iterable of all entities
      */
-    MULTI getAll();
+    M getAll();
 
     /**
      * Deletes an entity by identifier
      *
      * @param id Identifier of entity
      */
-    void deleteById(ID id);
+    void deleteById(I id);
 
     /**
      * Deletes an entity by associated entity object
      *
      * @param e Entity object to remove
      */
-    void delete(F e, ID id);
+    void delete(F e, I id);
 }

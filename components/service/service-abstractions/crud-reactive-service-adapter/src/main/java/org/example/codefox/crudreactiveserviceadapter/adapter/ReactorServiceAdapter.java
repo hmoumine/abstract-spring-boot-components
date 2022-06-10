@@ -1,10 +1,9 @@
 package org.example.codefox.crudreactiveserviceadapter.adapter;
 
-import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -18,10 +17,10 @@ import java.util.stream.Stream;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-@Service
-public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<E, ID, F, Flux<E>, Mono<E>> {
 
-    private final ICrudReactiveServiceCrudProcessor<E, ID, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor;
+public class ReactorServiceAdapter<E, I, F> implements IDefaultCrudServicePort<E, I, F, Flux<E>, Mono<E>> {
+
+    private final ICrudReactiveServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor;
 
     private final ISingleArgFunctionalInterface<F, Mono<E>> dtoToMonoEntityFunc;
 
@@ -29,7 +28,7 @@ public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<
 
     private final IBiArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc;
 
-    public ReactorServiceAdapter(final ICrudReactiveServiceCrudProcessor<E, ID, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor,
+    public ReactorServiceAdapter(final ICrudReactiveServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor,
                                  final ISingleArgFunctionalInterface<F, Mono<E>> dtoToMonoEntityFunc,
                                  final ISingleArgFunctionalInterface<F, Stream<E>> dtoToFluxEntityFunc,
                                  final IBiArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc) {
@@ -72,7 +71,7 @@ public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<
      * @return Updated entity
      */
     @Override
-    public Mono<E> update(final F e, final ID id) {
+    public Mono<E> update(final F e, final I id) {
         return this.iCrudReactiveServiceCrudProcessor.update(e, id, this.entityToMonoEntityFunc);
     }
 
@@ -83,7 +82,7 @@ public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<
      * @return Identified entity as optional
      */
     @Override
-    public Mono<E> getById(final ID id) {
+    public Mono<E> getById(final I id) {
         return this.iCrudReactiveServiceCrudProcessor.getById(id);
     }
 
@@ -103,7 +102,7 @@ public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<
      * @param id Identifier of entity
      */
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final I id) {
         this.iCrudReactiveServiceCrudProcessor.deleteById(id);
     }
 
@@ -114,7 +113,7 @@ public class ReactorServiceAdapter<E, ID, F> implements IDefaultCrudServicePort<
      * @param id Entity identifier type
      */
     @Override
-    public void delete(final F e, final ID id) {
+    public void delete(final F e, final I id) {
         this.iCrudReactiveServiceCrudProcessor.delete(e, id);
     }
 }

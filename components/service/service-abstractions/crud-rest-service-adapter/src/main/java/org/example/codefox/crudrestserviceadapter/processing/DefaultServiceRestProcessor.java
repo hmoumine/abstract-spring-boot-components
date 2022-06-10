@@ -1,13 +1,12 @@
 package org.example.codefox.crudrestserviceadapter.processing;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
-import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
-import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
-import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
-import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudrestserviceadapter.spi.IRestServiceCrudProcessor;
-import org.springframework.stereotype.Service;
+import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
 
 import java.util.Optional;
 import java.util.Set;
@@ -15,15 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-/**
- * Class {@code ACrudServiceAdapter} provides [...]
- *
- * @author Hamza MOUMINE
- * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
- * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
- * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
- */
-@Service
+
 public class DefaultServiceRestProcessor<E, I, F>
         implements IRestServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> {
 

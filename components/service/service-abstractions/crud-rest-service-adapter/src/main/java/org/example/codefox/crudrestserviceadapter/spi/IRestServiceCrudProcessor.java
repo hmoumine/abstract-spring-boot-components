@@ -9,9 +9,6 @@ import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
  * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
- */
-
-/**
  *
  * @param <E> Entity type
  * @param <I> Entity's identifier type
@@ -20,6 +17,5 @@ import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
  * @param <O> Single entity container type
  */
 public interface IRestServiceCrudProcessor<E, I, F, M, O> extends IServiceCrudProcessor<E, I, F, M, O> {
-
 
 }

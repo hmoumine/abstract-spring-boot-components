@@ -1,13 +1,13 @@
 package org.example.codefox.crudreactiveserviceadapter.processing;
 
-import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
-import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
+import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.toolboxconstants.exceptions.EntityMappingException;
 import org.example.codefox.toolboxconstants.exceptions.EntityNotFoundException;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
-import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -24,10 +24,11 @@ import java.util.stream.StreamSupport;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-public abstract class DefaultServiceReactorProcessor<E, ID, F>
-        implements ICrudReactiveServiceCrudProcessor<E, ID, F, Flux<E>, Mono<E>> {
 
-    private IDefaultPersistPort<E, ID, Flux<E>, Mono<E>> iDefaultPersistPort;
+public abstract class DefaultServiceReactorProcessor<E, I, F>
+        implements ICrudReactiveServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> {
+
+    private IDefaultPersistPort<E, I, Flux<E>, Mono<E>> iDefaultPersistPort;
 
     private PropertyExceptionMessageConfiguration pemc;
 
@@ -71,7 +72,7 @@ public abstract class DefaultServiceReactorProcessor<E, ID, F>
      * @return Updated entity
      */
     @Override
-    public Mono<E> update(final F e, final ID id, final IBiArgFunctionalInterface<F, Mono<E>> functionalMapper) {
+    public Mono<E> update(final F e, final I id, final IBiArgFunctionalInterface<F, Mono<E>> functionalMapper) {
         return this.iDefaultPersistPort.getById(id)
                 .flatMap(elt -> functionalMapper.apply(e, Mono.just(elt)))
                 .onErrorResume(throwable -> Mono.error(
@@ -88,7 +89,7 @@ public abstract class DefaultServiceReactorProcessor<E, ID, F>
      * @return Identified entity as optional
      */
     @Override
-    public Mono<E> getById(final ID id) {
+    public Mono<E> getById(final I id) {
         return this.iDefaultPersistPort.getById(id);
     }
 
@@ -108,10 +109,10 @@ public abstract class DefaultServiceReactorProcessor<E, ID, F>
      * @param id Identifier of entity
      */
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final I id) {
         this.iDefaultPersistPort.getById(id)
                 .switchIfEmpty(Mono.error(new EntityNotFoundException(pemc.getEntityIdNotFoundException())))
-                .doOnNext(elt -> this.iDefaultPersistPort.delete(elt));
+                .doOnNext(elt -> this.iDefaultPersistPort.delete(elt)); //FIXME
     }
 
 }

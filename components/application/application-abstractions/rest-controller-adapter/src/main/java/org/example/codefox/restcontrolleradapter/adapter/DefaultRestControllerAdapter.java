@@ -3,7 +3,6 @@ package org.example.codefox.restcontrolleradapter.adapter;
 import org.example.codefox.spicontrolleradapter.spi.IDefaultControllerPort;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 /**
  * Class {@code DefaultRestControllerAdapter} provides [...]
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-@Controller
 public class DefaultRestControllerAdapter<F, I, E> implements IDefaultControllerPort<F, I, Iterable<E>, E> {
 
     private final IDefaultCrudServicePort<E, I, F, Iterable<E>, E> iDefaultCrudServicePort;

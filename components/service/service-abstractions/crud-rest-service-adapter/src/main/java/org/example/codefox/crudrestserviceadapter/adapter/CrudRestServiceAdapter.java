@@ -4,21 +4,11 @@ import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterfac
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
- * Class {@code CrudRestServiceAdapter} provides [...]
- *
- * @author Hamza MOUMINE
- * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
- * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
- * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
- */
-@Service
+
 public class CrudRestServiceAdapter<E, I, F> implements IDefaultCrudServicePort<E, I, F, Iterable<E>, Optional<E>> {
 
     private final IServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> iServiceCrudProcessor;
@@ -29,7 +19,6 @@ public class CrudRestServiceAdapter<E, I, F> implements IDefaultCrudServicePort<
 
     private final IBiArgFunctionalInterface<F, Optional<E>> entityToEntityFunc;
 
-    @Autowired
     public CrudRestServiceAdapter(
             final IServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> iServiceCrudProcessor,
             final ISingleArgFunctionalInterface<F, Optional<E>> dtoToOptionalEntityFunc,

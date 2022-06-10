@@ -2,8 +2,9 @@ package org.example.codefox.restapp.controller;
 
 import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.model.Pole;
-import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.example.codefox.restcontrolleradapter.adapter.DefaultRestControllerAdapter;
+import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ import java.util.UUID;
 @RequestMapping("/pole")
 public class RestAppController extends DefaultRestControllerAdapter<Pole, UUID, PoleEntity> {
 
+    @Autowired
     public RestAppController(final IDefaultCrudServicePort<PoleEntity, UUID, Pole, Iterable<PoleEntity>, PoleEntity> iDefaultCrudServicePort) {
         super(iDefaultCrudServicePort);
     }

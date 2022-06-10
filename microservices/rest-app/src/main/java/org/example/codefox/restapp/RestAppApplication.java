@@ -2,7 +2,6 @@ package org.example.codefox.restapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * Class {@code RestAppApplication} provides [...]
@@ -13,7 +12,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 @SpringBootApplication
-public class RestAppApplication extends SpringBootServletInitializer {
+public class RestAppApplication {
+
     public static void main(final String[] args) {
         SpringApplication.run(RestAppApplication.class, args);
     }
