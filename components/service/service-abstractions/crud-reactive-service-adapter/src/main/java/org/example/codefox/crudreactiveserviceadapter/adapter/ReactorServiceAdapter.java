@@ -1,9 +1,11 @@
 package org.example.codefox.crudreactiveserviceadapter.adapter;
 
+import lombok.RequiredArgsConstructor;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,26 +19,17 @@ import java.util.stream.Stream;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-
+@Service
+@RequiredArgsConstructor
 public class ReactorServiceAdapter<E, I, F> implements IDefaultCrudServicePort<E, I, F, Flux<E>, Mono<E>> {
 
-    private final ICrudReactiveServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor;
+    private final ICrudReactiveServiceCrudProcessor<E, I, F> iCrudReactiveServiceCrudProcessor;
 
     private final ISingleArgFunctionalInterface<F, Mono<E>> dtoToMonoEntityFunc;
 
     private final ISingleArgFunctionalInterface<F, Stream<E>> dtoToFluxEntityFunc;
 
     private final IBiArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc;
-
-    public ReactorServiceAdapter(final ICrudReactiveServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor,
-                                 final ISingleArgFunctionalInterface<F, Mono<E>> dtoToMonoEntityFunc,
-                                 final ISingleArgFunctionalInterface<F, Stream<E>> dtoToFluxEntityFunc,
-                                 final IBiArgFunctionalInterface<F, Mono<E>> entityToMonoEntityFunc) {
-        this.iCrudReactiveServiceCrudProcessor = iCrudReactiveServiceCrudProcessor;
-        this.dtoToFluxEntityFunc = dtoToFluxEntityFunc;
-        this.dtoToMonoEntityFunc = dtoToMonoEntityFunc;
-        this.entityToMonoEntityFunc = entityToMonoEntityFunc;
-    }
 
     /**
      * Creates a new entity and returns created row as entity

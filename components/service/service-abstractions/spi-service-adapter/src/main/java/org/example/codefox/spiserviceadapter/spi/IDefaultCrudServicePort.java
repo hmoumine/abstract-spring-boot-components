@@ -9,7 +9,7 @@ package org.example.codefox.spiserviceadapter.spi;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
-public interface IDefaultCrudServicePort<E, ID, F, MULTI, MONO> {
+public interface IDefaultCrudServicePort<E, I, F, M, O> {
 
     /**
      * Creates a new entity and returns created row as entity
@@ -17,7 +17,7 @@ public interface IDefaultCrudServicePort<E, ID, F, MULTI, MONO> {
      * @param e Entity to save
      * @return Created Entity
      */
-    MONO create(final F e);
+    O create(final F e);
 
     /**
      * Creates a List of entities and returns an iterables of
@@ -26,7 +26,7 @@ public interface IDefaultCrudServicePort<E, ID, F, MULTI, MONO> {
      * @param e Iterable of entities to save
      * @return Iterable of created entities
      */
-    MULTI createAll(final Iterable<F> e);
+    M createAll(final Iterable<F> e);
 
     /**
      * Updates an existing entity
@@ -37,7 +37,7 @@ public interface IDefaultCrudServicePort<E, ID, F, MULTI, MONO> {
      * @param id Associated identifier of entity
      * @return Updated entity
      */
-    MONO update(F e, ID id);
+    O update(F e, I id);
 
     /**
      * Retrieves an entity by identifier from database as optional entity
@@ -45,26 +45,26 @@ public interface IDefaultCrudServicePort<E, ID, F, MULTI, MONO> {
      * @param id Identifier of entity
      * @return Identified entity as optional
      */
-    MONO getById(ID id);
+    O getById(I id);
 
     /**
      * Retrieves all entities on database as iterable
      *
      * @return Iterable of all entities
      */
-    MULTI getAll();
+    M getAll();
 
     /**
      * Deletes an entity by identifier
      *
      * @param id Identifier of entity
      */
-    void deleteById(ID id);
+    void deleteById(I id);
 
     /**
      * Deletes an entity by associated entity object
      *
      * @param e Entity object to remove
      */
-    void delete(F e, ID id);
+    void delete(F e, I id);
 }

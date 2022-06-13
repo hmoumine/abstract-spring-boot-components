@@ -3,13 +3,13 @@ package org.example.codefox.domaincommons.spi;
 /**
  * The interface Model port.
  *
- * @param <E>  the type parameter
- * @param <ID> the type parameter
+ * @param <E> the type parameter
+ * @param <I> the type parameter
  * @author Hamza MOUMINE
  * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
  * @see <a href="https://www.linkedin.com/in/hamza-moumine?originalSubdomain=fr">LinkedIn Profile</a>
  */
-public interface IModelPort<E, ID> {
+public interface IModelPort<E, I> {
 
     /**
      * Create.
@@ -31,7 +31,7 @@ public interface IModelPort<E, ID> {
      * @param id the id
      * @return the by id
      */
-    E getById(ID id);
+    E getById(I id);
 
     /**
      * Delete.
@@ -45,5 +45,5 @@ public interface IModelPort<E, ID> {
      *
      * @param id the id
      */
-    void deleteById(ID id);
+    void deleteById(I id);
 }

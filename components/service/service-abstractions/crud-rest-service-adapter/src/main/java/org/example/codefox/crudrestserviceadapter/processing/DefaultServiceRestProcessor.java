@@ -1,12 +1,14 @@
 package org.example.codefox.crudrestserviceadapter.processing;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.example.codefox.crudrestserviceadapter.spi.IRestServiceCrudProcessor;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Set;
@@ -14,21 +16,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-
+@Service
+@RequiredArgsConstructor
 public class DefaultServiceRestProcessor<E, I, F>
-        implements IRestServiceCrudProcessor<E, I, F, Iterable<E>, Optional<E>> {
+        implements IRestServiceCrudProcessor<E, I, F> {
 
     private final IDefaultPersistPort<E, I, Iterable<E>, Optional<E>> iDefaultPersistPort;
 
     private final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration;
 
-    public DefaultServiceRestProcessor(
-            final IDefaultPersistPort<E, I, Iterable<E>, Optional<E>> defaultPersistPort,
-            final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration
-    ) {
-        this.iDefaultPersistPort = defaultPersistPort;
-        this.propertyExceptionMessageConfiguration = propertyExceptionMessageConfiguration;
-    }
     /**
      * Creates a new entity and returns created row as entity
      *

@@ -1,5 +1,6 @@
 package org.example.codefox.crudreactiveserviceadapter.processing;
 
+import lombok.RequiredArgsConstructor;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
@@ -8,6 +9,7 @@ import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInte
 import org.example.codefox.toolboxconstants.exceptions.EntityMappingException;
 import org.example.codefox.toolboxconstants.exceptions.EntityNotFoundException;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -25,8 +27,10 @@ import java.util.stream.StreamSupport;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
-public abstract class DefaultServiceReactorProcessor<E, I, F>
-        implements ICrudReactiveServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> {
+@Service
+@RequiredArgsConstructor
+public class DefaultServiceReactorProcessor<E, I, F>
+        implements ICrudReactiveServiceCrudProcessor<E, I, F> {
 
     private IDefaultPersistPort<E, I, Flux<E>, Mono<E>> iDefaultPersistPort;
 
@@ -112,7 +116,18 @@ public abstract class DefaultServiceReactorProcessor<E, I, F>
     public void deleteById(final I id) {
         this.iDefaultPersistPort.getById(id)
                 .switchIfEmpty(Mono.error(new EntityNotFoundException(pemc.getEntityIdNotFoundException())))
-                .doOnNext(elt -> this.iDefaultPersistPort.delete(elt)); //FIXME
+                .doOnNext(elt -> this.iDefaultPersistPort.delete(elt));
+    }
+
+    /**
+     * Deletes an entity by associated entity object
+     *
+     * @param e  Entity object to remove
+     * @param id
+     */
+    @Override
+    public void delete(F e, I id) {
+        System.err.println("Undefined function delete.\nAt DefaultServiceReactorProcessor line 131");
     }
 
 }

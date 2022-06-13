@@ -9,13 +9,13 @@ import reactor.core.publisher.Mono;
 /**
  * {@inheritDoc}
  */
-public class AdapterPersistenceDataReactive<E, ID>
-        implements IDefaultPersistPort<E, ID, Flux<E>, Mono<E>> {
+public class AdapterPersistenceDataReactive<E, I>
+        implements IDefaultPersistPort<E, I, Flux<E>, Mono<E>> {
 
     /**
      * Reactive Crud repository
      */
-    private ReactiveCrudRepository<E, ID> repository;
+    private final ReactiveCrudRepository<E, I> repository;
 
     /**
      * Instantiates a new Adapter persistence data jpa.
@@ -24,7 +24,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      */
     @Autowired
     public AdapterPersistenceDataReactive(
-            final ReactiveCrudRepository<E, ID> repository
+            final ReactiveCrudRepository<E, I> repository
     ) {
         this.repository = repository;
     }
@@ -33,7 +33,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      * {@inheritDoc}
      */
     @Override
-    public Mono<E> create(E e) {
+    public Mono<E> create(final E e) {
         return this.repository.save(e);
     }
 
@@ -41,7 +41,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      * {@inheritDoc}
      */
     @Override
-    public Flux<E> createAll(Iterable<E> eIterable) {
+    public Flux<E> createAll(final Iterable<E> eIterable) {
         return this.repository.saveAll(eIterable);
     }
 
@@ -52,7 +52,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      * @return the e
      */
     @Override
-    public Mono<E> update(E e) {
+    public Mono<E> update(final E e) {
         return this.repository.save(e);
     }
 
@@ -63,7 +63,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      * @return the by id
      */
     @Override
-    public Mono<E> getById(ID id) {
+    public Mono<E> getById(final I id) {
         return this.repository.findById(id);
     }
 
@@ -83,7 +83,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      * @param id the id
      */
     @Override
-    public void deleteById(ID id) {
+    public void deleteById(final I id) {
         this.repository.deleteById(id);
     }
 
@@ -93,7 +93,7 @@ public class AdapterPersistenceDataReactive<E, ID>
      * @param e the e
      */
     @Override
-    public void delete(E e) {
+    public void delete(final E e) {
         this.repository.delete(e);
     }
 }
