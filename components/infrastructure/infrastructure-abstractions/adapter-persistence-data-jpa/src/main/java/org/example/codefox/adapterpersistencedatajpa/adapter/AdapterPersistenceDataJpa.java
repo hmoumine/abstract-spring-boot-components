@@ -1,25 +1,33 @@
 package org.example.codefox.adapterpersistencedatajpa.adapter;
 
 import org.example.codefox.adapterpersistencedatajpa.spi.IJpaPersistPort;
+import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 /**
  * {@inheritDoc}
  */
+@Service
 public class AdapterPersistenceDataJpa<E, I>
         implements IJpaPersistPort<E, I, Iterable<E>, Optional<E>> {
 
     private final JpaRepository<E, I> repository;
 
+    private final PropertyExceptionMessageConfiguration pemc;
+
     /**
      * Instantiates a new Adapter persistence data jpa.
      *
-     * @param repository                            the repository
+     * @param repository the repository
      */
-    public AdapterPersistenceDataJpa(final JpaRepository<E, I> repository) {
+    @Autowired
+    public AdapterPersistenceDataJpa(final JpaRepository<E, I> repository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
         this.repository = repository;
+        this.pemc = propertyExceptionMessageConfiguration;
     }
 
     /**

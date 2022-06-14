@@ -15,10 +15,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.example.codefox</groupId>
-            <artifactId>domain-pole</artifactId>
-        </dependency>
     </dependencies>
 
     <properties>

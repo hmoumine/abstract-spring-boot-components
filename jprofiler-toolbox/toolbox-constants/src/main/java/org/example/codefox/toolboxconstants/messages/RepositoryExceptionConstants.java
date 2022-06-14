@@ -7,8 +7,9 @@ package org.example.codefox.toolboxconstants.messages;
  * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
  * @see <a href="https://www.linkedin.com/in/hamza-moumine?originalSubdomain=fr">LinkedIn Profile</a>
  */
-public final class JpaExceptionConstants {
-    private JpaExceptionConstants() {}
+public final class RepositoryExceptionConstants {
+    private RepositoryExceptionConstants() {
+    }
 
     /**
      * The constant ENTITY_ID_NOT_FOUND.

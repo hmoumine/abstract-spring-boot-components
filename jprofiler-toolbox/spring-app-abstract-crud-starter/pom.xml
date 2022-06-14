@@ -10,12 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-app-abstract-crud-starter</artifactId>
+
     <dependencies>
-        <dependency>
-            <groupId>org.example.codefox</groupId>
-            <artifactId>crud-rest-service-adapter</artifactId>
-            <scope>compile</scope>
-        </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>domain-commons</artifactId>
@@ -23,9 +19,17 @@
         </dependency>
         <dependency>
             <groupId>org.example.codefox</groupId>
-            <artifactId>spring-app-custom-annotations</artifactId>
-            <scope>compile</scope>
+            <artifactId>spi-service-adapter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spring-app-message-property-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spi-persistence-port</artifactId>
+        </dependency>
+
     </dependencies>
 
     <properties>

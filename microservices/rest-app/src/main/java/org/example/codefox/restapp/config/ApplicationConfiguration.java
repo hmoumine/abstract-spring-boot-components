@@ -1,18 +1,18 @@
 package org.example.codefox.restapp.config;
 
 import org.example.codefox.adapterpersistencedatajpa.adapter.AdapterPersistenceDataJpa;
-import org.example.codefox.adapterpersistencedatajpa.spi.IJpaPersistPort;
 import org.example.codefox.crudrestserviceadapter.adapter.CrudRestServiceAdapter;
 import org.example.codefox.crudrestserviceadapter.processing.DefaultServiceRestProcessor;
-import org.example.codefox.crudrestserviceadapter.spi.IRestServiceCrudProcessor;
 import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.mapper.PoleMapper;
 import org.example.codefox.domainpole.model.Pole;
 import org.example.codefox.domainpole.repositories.PoleRepository;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgConsumerFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.example.codefox.springappabstractcrudstarter.config.AApplicationConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -82,29 +82,34 @@ public class ApplicationConfiguration
     }
 
     @Bean
-    public IJpaPersistPort<PoleEntity, UUID, Iterable<PoleEntity>, Optional<PoleEntity>> jpaPersistPort(
-            final PoleRepository pol
+    public IDefaultPersistPort<PoleEntity, UUID, Iterable<PoleEntity>, Optional<PoleEntity>> defaultPersistPort(
+            final PoleRepository poleRepository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration
     ) {
-        return new AdapterPersistenceDataJpa<>(pol);
+        return new AdapterPersistenceDataJpa<>(poleRepository, propertyExceptionMessageConfiguration);
     }
 
     @Bean
-    public IRestServiceCrudProcessor<PoleEntity, UUID, Pole>
+    public IServiceCrudProcessor<PoleEntity, UUID, Pole, Iterable<PoleEntity>, Optional<PoleEntity>>
     crudRestServiceCrudProcessorPoleEntity(
-            final IJpaPersistPort<PoleEntity, UUID, Iterable<PoleEntity>, Optional<PoleEntity>> defaultPersistPort,
+            final IDefaultPersistPort<PoleEntity, UUID, Iterable<PoleEntity>, Optional<PoleEntity>> defaultPersistPort,
             final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration
     ) {
         return new DefaultServiceRestProcessor<>(defaultPersistPort, propertyExceptionMessageConfiguration);
     }
 
-    @Bean
-    public IDefaultCrudServicePort<PoleEntity, UUID, Pole, Iterable<PoleEntity>, PoleEntity>
-    defaultCrudServicePort(
-            final IRestServiceCrudProcessor<PoleEntity, UUID, Pole> defaultServiceRestProcessor,
+    /**
+     * @param defaultServiceRestProcessor
+     * @param dtoToOptionalEntityFunc
+     * @param dtoToStreamEntityFunc
+     * @param entityToEntityFunc
+     * @return
+     */
+    @Override
+    public IDefaultCrudServicePort<PoleEntity, UUID, Pole, Iterable<PoleEntity>, Optional<PoleEntity>> defaultCrudServicePort(
+            final IServiceCrudProcessor<PoleEntity, UUID, Pole, Iterable<PoleEntity>, Optional<PoleEntity>> defaultServiceRestProcessor,
             @Qualifier("ISingleArgFunctionalInterfaceCE") final ISingleArgFunctionalInterface<Pole, Optional<PoleEntity>> dtoToOptionalEntityFunc,
             @Qualifier("ISingleArgFunctionalInterfaceCSTREAM") final ISingleArgFunctionalInterface<Pole, Stream<PoleEntity>> dtoToStreamEntityFunc,
-            final IBiArgFunctionalInterface<Pole, Optional<PoleEntity>> entityToEntityFunc
-    ) {
+            final IBiArgFunctionalInterface<Pole, Optional<PoleEntity>> entityToEntityFunc) {
         return new <PoleEntity, UUID, Pole, Iterable<PoleEntity>, Optional<PoleEntity>>CrudRestServiceAdapter(defaultServiceRestProcessor, dtoToOptionalEntityFunc, dtoToStreamEntityFunc, entityToEntityFunc);
     }
 
@@ -121,7 +126,7 @@ public class ApplicationConfiguration
     }
 
     @Bean
-    public IBiArgFunctionalInterface<Pole, Optional<PoleEntity>> entityToEntityFunc(final PoleMapper mapper) {
+    public IBiArgFunctionalInterface<Pole, Optional<PoleEntity>> dtoToEntityBiArgFunc(final PoleMapper mapper) {
         return (entitySource, entityDestination) -> {
             executeIfPresent(entitySource, entityDestination, mapper::update);
             return entityDestination;

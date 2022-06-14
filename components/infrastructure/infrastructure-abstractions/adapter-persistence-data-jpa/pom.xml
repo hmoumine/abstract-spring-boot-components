@@ -31,6 +31,10 @@
             <artifactId>spi-persistence-port</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spring-app-message-property-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

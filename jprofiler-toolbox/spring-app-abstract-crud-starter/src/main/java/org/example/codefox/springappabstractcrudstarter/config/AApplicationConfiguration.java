@@ -1,17 +1,16 @@
 package org.example.codefox.springappabstractcrudstarter.config;
 
-import org.example.codefox.adapterpersistencedatajpa.spi.IJpaPersistPort;
-import org.example.codefox.crudrestserviceadapter.spi.IRestServiceCrudProcessor;
 import org.example.codefox.domaincommons.mapper.AbstractMapper;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgConsumerFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.stream.Stream;
 
@@ -31,7 +30,7 @@ import java.util.stream.Stream;
 @Configuration
 public interface AApplicationConfiguration<A, B, C, D, E,
         F extends AbstractMapper<A, C>,
-        G extends JpaRepository<A, B>> {
+        G> {
 
     E wrap(A e);
 
@@ -41,20 +40,20 @@ public interface AApplicationConfiguration<A, B, C, D, E,
     PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration();
 
     @Bean
-    IJpaPersistPort<A, B, D, E> jpaPersistPort(final G repository);
+    IDefaultPersistPort<A, B, D, E> defaultPersistPort(final G repository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration);
 
     @Bean
-    IRestServiceCrudProcessor<A, B, C>
-    crudRestServiceCrudProcessorPoleEntity(final IJpaPersistPort<A, B, D, E> defaultPersistPort,
+    IServiceCrudProcessor<A, B, C, D, E>
+    crudRestServiceCrudProcessorPoleEntity(final IDefaultPersistPort<A, B, D, E> defaultPersistPort,
                                            final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration);
 
     @Bean
-    public IDefaultCrudServicePort<A, B, C, D, A>
+    IDefaultCrudServicePort<A, B, C, D, E>
     defaultCrudServicePort(
-            final IRestServiceCrudProcessor<A, B, C> defaultServiceRestProcessor,
+            final IServiceCrudProcessor<A, B, C, D, E> defaultServiceRestProcessor,
             @Qualifier("ISingleArgFunctionalInterfaceCE") final ISingleArgFunctionalInterface<C, E> dtoToOptionalEntityFunc,
             @Qualifier("ISingleArgFunctionalInterfaceCSTREAM") final ISingleArgFunctionalInterface<C, Stream<A>> dtoToStreamEntityFunc,
-            final IBiArgFunctionalInterface<C, E> entityToEntityFunc
+            @Qualifier("IBiArgFunctionalInterfaceBiArg") final IBiArgFunctionalInterface<C, E> entityToEntityFunc
     );
 
     @Bean
@@ -66,6 +65,7 @@ public interface AApplicationConfiguration<A, B, C, D, E,
     ISingleArgFunctionalInterface<C, Stream<A>> dtoToStreamEntityFunc(final F mapper);
 
     @Bean
-    IBiArgFunctionalInterface<C, E> entityToEntityFunc(final F mapper);
+    @Qualifier("IBiArgFunctionalInterfaceBiArg")
+    IBiArgFunctionalInterface<C, E> dtoToEntityBiArgFunc(final F mapper);
 
 }

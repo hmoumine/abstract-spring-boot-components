@@ -50,6 +50,14 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>adapter-persistence-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>crud-rest-service-adapter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

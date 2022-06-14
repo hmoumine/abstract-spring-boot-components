@@ -1,9 +1,9 @@
 package org.example.codefox.crudreactiveserviceadapter.adapter;
 
 import lombok.RequiredArgsConstructor;
-import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class ReactorServiceAdapter<E, I, F> implements IDefaultCrudServicePort<E, I, F, Flux<E>, Mono<E>> {
 
-    private final ICrudReactiveServiceCrudProcessor<E, I, F> iCrudReactiveServiceCrudProcessor;
+    private final IServiceCrudProcessor<E, I, F, Flux<E>, Mono<E>> iCrudReactiveServiceCrudProcessor;
 
     private final ISingleArgFunctionalInterface<F, Mono<E>> dtoToMonoEntityFunc;
 

@@ -1,6 +1,8 @@
 package org.example.codefox.adapterpersistencereactivedataflux.adapter;
 
-import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
+import org.example.codefox.adapterpersistencereactivedataflux.spi.IReactivePersistPort;
+import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.toolboxconstants.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
@@ -8,14 +10,22 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@inheritDoc}
+ *
+ * @param <E>
+ * @param <I>
  */
 public class AdapterPersistenceDataReactive<E, I>
-        implements IDefaultPersistPort<E, I, Flux<E>, Mono<E>> {
+        implements IReactivePersistPort<E, I, Flux<E>, Mono<E>> {
 
     /**
      * Reactive Crud repository
      */
     private final ReactiveCrudRepository<E, I> repository;
+
+    /**
+     * Message properties bean
+     */
+    private PropertyExceptionMessageConfiguration pemc;
 
     /**
      * Instantiates a new Adapter persistence data jpa.
@@ -24,9 +34,11 @@ public class AdapterPersistenceDataReactive<E, I>
      */
     @Autowired
     public AdapterPersistenceDataReactive(
-            final ReactiveCrudRepository<E, I> repository
+            final ReactiveCrudRepository<E, I> repository,
+            final PropertyExceptionMessageConfiguration pemc
     ) {
         this.repository = repository;
+        this.pemc = pemc;
     }
 
     /**
@@ -84,7 +96,8 @@ public class AdapterPersistenceDataReactive<E, I>
      */
     @Override
     public void deleteById(final I id) {
-        this.repository.deleteById(id);
+        this.repository.deleteById(id)
+                .doOnError(throwable -> Mono.error(new EntityNotFoundException(pemc.entityIdNotFoundException, throwable)));
     }
 
     /**

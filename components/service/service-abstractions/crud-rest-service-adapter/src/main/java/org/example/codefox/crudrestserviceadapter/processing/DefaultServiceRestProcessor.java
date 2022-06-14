@@ -38,7 +38,7 @@ public class DefaultServiceRestProcessor<E, I, F>
                 .flatMap(this.iDefaultPersistPort::create)
                 .or(() -> {
                     throw new EntitySaveException(
-                            propertyExceptionMessageConfiguration.getEntitySaveException());
+                            propertyExceptionMessageConfiguration.entitySaveException);
                 });
     }
 
@@ -72,7 +72,7 @@ public class DefaultServiceRestProcessor<E, I, F>
                 .flatMap(this.iDefaultPersistPort::update)
                 .or(() -> {
                     throw new EntityNotFoundException(
-                            propertyExceptionMessageConfiguration.getEntityIdNotFoundException());
+                            propertyExceptionMessageConfiguration.entityIdNotFoundException);
                 });
     }
 
@@ -108,7 +108,7 @@ public class DefaultServiceRestProcessor<E, I, F>
                 .ifPresentOrElse(
                         this.iDefaultPersistPort::delete,
                         () -> new EntityNotFoundException(
-                                propertyExceptionMessageConfiguration.getEntityIdNotFoundException()));
+                                propertyExceptionMessageConfiguration.entityIdNotFoundException));
     }
 
     /**
@@ -123,7 +123,7 @@ public class DefaultServiceRestProcessor<E, I, F>
                 .ifPresentOrElse(
                         this.iDefaultPersistPort::delete,
                         () -> new EntityNotFoundException(
-                                propertyExceptionMessageConfiguration.getEntityIdNotFoundException()));
+                                propertyExceptionMessageConfiguration.entityIdNotFoundException));
     }
 
 }

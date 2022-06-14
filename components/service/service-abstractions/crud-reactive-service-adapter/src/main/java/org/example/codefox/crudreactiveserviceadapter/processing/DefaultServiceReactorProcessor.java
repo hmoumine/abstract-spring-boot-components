@@ -1,6 +1,6 @@
 package org.example.codefox.crudreactiveserviceadapter.processing;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
 import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
@@ -28,7 +28,7 @@ import java.util.stream.StreamSupport;
  */
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class DefaultServiceReactorProcessor<E, I, F>
         implements ICrudReactiveServiceCrudProcessor<E, I, F> {
 
@@ -46,10 +46,10 @@ public class DefaultServiceReactorProcessor<E, I, F>
     public Mono<E> create(final F e, final ISingleArgFunctionalInterface<F, Mono<E>> functionalMapper) {
         return functionalMapper.apply(e)
                 .onErrorResume(throwable -> Mono.error(
-                        new EntityMappingException(pemc.getEntityMappingException(), throwable)))
+                        new EntityMappingException(pemc.entityMappingException, throwable)))
                 .flatMap(elt -> this.iDefaultPersistPort.create(elt))
                 .onErrorResume(throwable -> Mono.error(
-                        new EntitySaveException(pemc.getEntitySaveException(), throwable)));
+                        new EntitySaveException(pemc.entitySaveException, throwable)));
     }
 
     /**
@@ -80,10 +80,10 @@ public class DefaultServiceReactorProcessor<E, I, F>
         return this.iDefaultPersistPort.getById(id)
                 .flatMap(elt -> functionalMapper.apply(e, Mono.just(elt)))
                 .onErrorResume(throwable -> Mono.error(
-                        new EntityMappingException(pemc.getEntityMappingException(), throwable)))
+                        new EntityMappingException(pemc.entityMappingException, throwable)))
                 .flatMap(flatted -> this.iDefaultPersistPort.update(flatted))
                 .onErrorResume(throwable -> Mono.error(
-                        new EntityNotFoundException(pemc.getEntityIdNotFoundException(), throwable)));
+                        new EntityNotFoundException(pemc.entityIdNotFoundException, throwable)));
     }
 
     /**
@@ -115,7 +115,7 @@ public class DefaultServiceReactorProcessor<E, I, F>
     @Override
     public void deleteById(final I id) {
         this.iDefaultPersistPort.getById(id)
-                .switchIfEmpty(Mono.error(new EntityNotFoundException(pemc.getEntityIdNotFoundException())))
+                .switchIfEmpty(Mono.error(new EntityNotFoundException(pemc.entityIdNotFoundException)))
                 .doOnNext(elt -> this.iDefaultPersistPort.delete(elt));
     }
 

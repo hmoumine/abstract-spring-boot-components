@@ -37,6 +37,7 @@
             <groupId>org.example.codefox</groupId>
             <artifactId>domain-commons</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

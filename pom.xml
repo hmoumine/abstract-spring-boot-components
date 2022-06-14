@@ -31,6 +31,10 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
 
+        <!-- Database -->
+        <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
+
+        <!-- Rest params -->
         <adapter-persistence-data-jpa.version>1.0-SNAPSHOT</adapter-persistence-data-jpa.version>
         <crud-rest-service-adapter.version>1.0-SNAPSHOT</crud-rest-service-adapter.version>
         <domain-commons.version>1.0-SNAPSHOT</domain-commons.version>
@@ -44,13 +48,47 @@
         <spring-app-message-property-starter.version>1.0-SNAPSHOT</spring-app-message-property-starter.version>
         <toolbox-constants.version>1.0-SNAPSHOT</toolbox-constants.version>
 
+        <!-- Reactive params -->
+        <adapter-reactive-controller.version>1.0-SNAPSHOT</adapter-reactive-controller.version>
+        <adapter-persistence-reactive-data-flux.version>1.0-SNAPSHOT</adapter-persistence-reactive-data-flux.version>
+        <crud-reactive-service-adapter.version>1.0-SNAPSHOT</crud-reactive-service-adapter.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <domain-pole-reactive.version>1.0-SNAPSHOT</domain-pole-reactive.version>
     </properties>
+
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java-maven-compiler-plugin.version}</source>
+                    <target>${java-maven-compiler-plugin.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <!-- This is needed when using Lombok 1.18.16 and above -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${lombok-mapstruct-binding.version}</version>
+                        </path>
+                        <!-- Mapstruct should follow the lombok path(s) -->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
@@ -59,6 +97,11 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -112,7 +155,16 @@
                 <version>9.23</version>
             </dependency>
 
+            <!-- Database -->
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-postgresql</artifactId>
+                <version>${r2dbc-postgresql.version}</version>
+                <scope>runtime</scope>
+            </dependency>
             <!-- Project Dependencies -->
+
+            <!-- rest -->
             <dependency>
                 <groupId>org.example.codefox</groupId>
                 <artifactId>spring-app-abstract-crud-starter</artifactId>
@@ -183,6 +235,32 @@
                 <groupId>org.example.codefox</groupId>
                 <artifactId>domain-commons</artifactId>
                 <version>${domain-commons.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- reactive -->
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>adapter-reactive-controller</artifactId>
+                <version>${adapter-reactive-controller.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>adapter-persistence-reactive-data-flux</artifactId>
+                <version>${adapter-persistence-reactive-data-flux.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>crud-reactive-service-adapter</artifactId>
+                <version>${crud-reactive-service-adapter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>domain-pole-reactive</artifactId>
+                <version>${domain-pole-reactive.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
