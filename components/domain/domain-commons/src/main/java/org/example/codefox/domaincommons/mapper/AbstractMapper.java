@@ -19,6 +19,6 @@ public interface AbstractMapper<E, F> {
     @Mapping(target = "id", source = "id")
     F toDto(final E entity);
 
-    void update(F dto, @MappingTarget E updateEntity);
+    void update(final F dto, @MappingTarget final E updateEntity);
 
 }

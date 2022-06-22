@@ -15,6 +15,7 @@
     <modules>
         <module>domain-pole</module>
         <module>domain-commons</module>
+        <module>domain-streaming</module>
     </modules>
 
     <properties>

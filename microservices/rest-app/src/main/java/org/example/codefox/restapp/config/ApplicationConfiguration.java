@@ -7,7 +7,6 @@ import org.example.codefox.domainpole.entities.PoleEntity;
 import org.example.codefox.domainpole.mapper.PoleMapper;
 import org.example.codefox.domainpole.model.Pole;
 import org.example.codefox.domainpole.repositories.PoleRepository;
-import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgConsumerFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
@@ -15,6 +14,7 @@ import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInte
 import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
 import org.example.codefox.springappabstractcrudstarter.config.AApplicationConfiguration;
+import org.example.codefox.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -115,7 +115,7 @@ public class ApplicationConfiguration
 
     @Bean
     @Qualifier("ISingleArgFunctionalInterfaceCE")
-    public ISingleArgFunctionalInterface<Pole, Optional<PoleEntity>> poleOptionalIFunctionalMapper(final PoleMapper mapper) {
+    public ISingleArgFunctionalInterface<Pole, Optional<PoleEntity>> optionalIFunctionalMapper(final PoleMapper mapper) {
         return dto -> wrap(mapper.toEntity(dto));
     }
 

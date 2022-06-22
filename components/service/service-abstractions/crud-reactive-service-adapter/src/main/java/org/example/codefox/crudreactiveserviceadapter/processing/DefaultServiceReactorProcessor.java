@@ -2,10 +2,10 @@ package org.example.codefox.crudreactiveserviceadapter.processing;
 
 import lombok.AllArgsConstructor;
 import org.example.codefox.crudreactiveserviceadapter.spi.ICrudReactiveServiceCrudProcessor;
-import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
+import org.example.codefox.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.toolboxconstants.exceptions.EntityMappingException;
 import org.example.codefox.toolboxconstants.exceptions.EntityNotFoundException;
 import org.example.codefox.toolboxconstants.exceptions.EntitySaveException;
@@ -126,8 +126,8 @@ public class DefaultServiceReactorProcessor<E, I, F>
      * @param id
      */
     @Override
-    public void delete(F e, I id) {
-        System.err.println("Undefined function delete.\nAt DefaultServiceReactorProcessor line 131");
+    public void delete(final F e, final I id) {
+        throw new UnsupportedOperationException();
     }
 
 }

@@ -1,7 +1,7 @@
 package org.example.codefox.adapterpersistencereactivedataflux.adapter;
 
 import org.example.codefox.adapterpersistencereactivedataflux.spi.IReactivePersistPort;
-import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.toolboxconstants.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
@@ -25,7 +25,7 @@ public class AdapterPersistenceDataReactive<E, I>
     /**
      * Message properties bean
      */
-    private PropertyExceptionMessageConfiguration pemc;
+    private final PropertyExceptionMessageConfiguration pemc;
 
     /**
      * Instantiates a new Adapter persistence data jpa.

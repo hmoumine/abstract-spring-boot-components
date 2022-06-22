@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class FluxAppApplication {
-
     public static void main(final String[] args) {
         SpringApplication.run(FluxAppApplication.class, args);
     }

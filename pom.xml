@@ -34,11 +34,12 @@
         <!-- Database -->
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
 
-        <!-- Rest params -->
+        <!-- Project params -->
         <adapter-persistence-data-jpa.version>1.0-SNAPSHOT</adapter-persistence-data-jpa.version>
         <crud-rest-service-adapter.version>1.0-SNAPSHOT</crud-rest-service-adapter.version>
         <domain-commons.version>1.0-SNAPSHOT</domain-commons.version>
         <domain-pole.version>1.0-SNAPSHOT</domain-pole.version>
+        <domain-streaming.version>1.0-SNAPSHOT</domain-streaming.version>
         <rest-controller-adapter.version>1.0-SNAPSHOT</rest-controller-adapter.version>
         <spi-persistence-port.version>1.0-SNAPSHOT</spi-persistence-port.version>
         <spi-service-adapter.version>1.0-SNAPSHOT</spi-service-adapter.version>
@@ -54,8 +55,8 @@
         <crud-reactive-service-adapter.version>1.0-SNAPSHOT</crud-reactive-service-adapter.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <domain-pole-reactive.version>1.0-SNAPSHOT</domain-pole-reactive.version>
+        <domain-name-basics.version>1.0-SNAPSHOT</domain-name-basics.version>
     </properties>
-
 
     <build>
         <plugins>
@@ -237,7 +238,12 @@
                 <version>${domain-commons.version}</version>
                 <scope>compile</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>domain-streaming</artifactId>
+                <version>${domain-streaming.version}</version>
+                <scope>compile</scope>
+            </dependency>
             <!-- reactive -->
             <dependency>
                 <groupId>org.example.codefox</groupId>
@@ -261,6 +267,12 @@
                 <groupId>org.example.codefox</groupId>
                 <artifactId>domain-pole-reactive</artifactId>
                 <version>${domain-pole-reactive.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.example.codefox</groupId>
+                <artifactId>domain-name-basics</artifactId>
+                <version>${domain-name-basics.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>

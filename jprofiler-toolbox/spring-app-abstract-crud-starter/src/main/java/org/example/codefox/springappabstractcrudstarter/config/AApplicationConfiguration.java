@@ -1,13 +1,13 @@
 package org.example.codefox.springappabstractcrudstarter.config;
 
 import org.example.codefox.domaincommons.mapper.AbstractMapper;
-import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgConsumerFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.ISingleArgFunctionalInterface;
 import org.example.codefox.spiserviceadapter.processing.IServiceCrudProcessor;
 import org.example.codefox.spiserviceadapter.spi.IDefaultCrudServicePort;
+import org.example.codefox.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,7 +58,7 @@ public interface AApplicationConfiguration<A, B, C, D, E,
 
     @Bean
     @Qualifier("ISingleArgFunctionalInterfaceCE")
-    ISingleArgFunctionalInterface<C, E> poleOptionalIFunctionalMapper(final F mapper);
+    ISingleArgFunctionalInterface<C, E> optionalIFunctionalMapper(final F mapper);
 
     @Bean
     @Qualifier("ISingleArgFunctionalInterfaceCSTREAM")

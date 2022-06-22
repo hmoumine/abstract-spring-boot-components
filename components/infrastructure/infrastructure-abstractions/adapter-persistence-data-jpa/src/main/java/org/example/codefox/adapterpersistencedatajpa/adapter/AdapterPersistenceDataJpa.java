@@ -1,7 +1,7 @@
 package org.example.codefox.adapterpersistencedatajpa.adapter;
 
 import org.example.codefox.adapterpersistencedatajpa.spi.IJpaPersistPort;
-import org.example.codefox.jprofilestarters.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
+import org.example.codefox.springappmessagepropertystarter.messages.PropertyExceptionMessageConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
