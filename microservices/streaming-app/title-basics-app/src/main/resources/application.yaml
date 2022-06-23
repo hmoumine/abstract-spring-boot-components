@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: '/title-basics'
+  port: 8092
+
+logging:
+  level:
+    org:
+      hibernate: DEBUG
+      springframework:
+        web: DEBUG
+spring:
+  data:
+    mongodb:
+      authentication-database: 'admin'
+      username: 'streamer'
+      database: 'streaming'
+      password: 'tester'
+      port: 27017
+      host: 'localhost'
+      uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}/${spring.data.mongodb.database}
+

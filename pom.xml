@@ -13,6 +13,7 @@
         <module>microservices</module>
         <module>components</module>
         <module>jprofiler-toolbox</module>
+        <module>web-applications</module>
     </modules>
 
     <properties>

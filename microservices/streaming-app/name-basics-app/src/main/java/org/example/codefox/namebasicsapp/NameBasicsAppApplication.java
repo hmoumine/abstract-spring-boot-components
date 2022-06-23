@@ -2,7 +2,6 @@ package org.example.codefox.namebasicsapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Class {@code NameBasicsAppApplication} provides [...]
@@ -13,10 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {
-        "org.springframework.boot.context"})
 public class NameBasicsAppApplication {
-
     public static void main(final String[] args) {
         SpringApplication.run(NameBasicsAppApplication.class, args);
     }

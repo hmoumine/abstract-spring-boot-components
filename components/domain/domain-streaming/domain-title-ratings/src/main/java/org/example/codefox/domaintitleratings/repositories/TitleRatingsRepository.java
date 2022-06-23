@@ -1,4 +1,4 @@
-package org.example.codefox.domaintitleratings.repository;
+package org.example.codefox.domaintitleratings.repositories;
 
 import org.example.codefox.domaintitleratings.model.TitleRatings;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;

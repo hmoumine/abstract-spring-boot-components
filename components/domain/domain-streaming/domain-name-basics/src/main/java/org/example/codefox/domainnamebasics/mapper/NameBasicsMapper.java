@@ -12,9 +12,8 @@ import org.mapstruct.Mapper;
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface NameBasicsMapper extends AbstractMapper<NameBasics, NameBasics> {
-
     @Override
     NameBasics toDto(final NameBasics entity);
 }

@@ -1,5 +1,6 @@
 package org.example.codefox.springappmessagepropertystarter.messages;
 
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 

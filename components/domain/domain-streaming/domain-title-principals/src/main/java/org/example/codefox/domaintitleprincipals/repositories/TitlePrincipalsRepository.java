@@ -1,12 +1,13 @@
-package org.example.codefox.domaintitlebasics.repository;
+package org.example.codefox.domaintitleprincipals.repositories;
 
-import org.example.codefox.domaintitlebasics.model.TitleBasics;
+import org.example.codefox.domaintitleprincipals.model.TitlePrincipals;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 /**
- * Interface {@code TitleBasicsRepository} provides [...]
+ * Interface {@code TitlePrincipalsRepository} provides [...]
  *
  * @author Hamza MOUMINE
  * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
@@ -14,5 +15,6 @@ import java.util.UUID;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
-public interface TitleBasicsRepository extends ReactiveMongoRepository<TitleBasics, UUID> {
+@Repository
+public interface TitlePrincipalsRepository extends ReactiveMongoRepository<TitlePrincipals, UUID> {
 }

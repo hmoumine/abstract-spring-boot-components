@@ -1,7 +1,8 @@
-package org.example.codefox.domaintitlecrew.repository;
+package org.example.codefox.domaintitlecrew.repositories;
 
 import org.example.codefox.domaintitlecrew.model.TitleCrew;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
@@ -14,5 +15,6 @@ import java.util.UUID;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 
+@Repository
 public interface TitleCrewRepository extends ReactiveMongoRepository<TitleCrew, UUID> {
 }

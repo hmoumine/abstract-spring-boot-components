@@ -21,15 +21,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
         <!-- Project Deps -->
         <dependency>
             <groupId>org.example.codefox</groupId>
             <artifactId>domain-name-basics</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spring-app-message-property-starter</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -52,7 +53,6 @@
             <artifactId>crud-reactive-service-adapter</artifactId>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
 
     <build>

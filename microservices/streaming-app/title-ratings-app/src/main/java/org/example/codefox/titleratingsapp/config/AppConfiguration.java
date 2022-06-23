@@ -1,11 +1,11 @@
-package org.example.codefox.namebasicsapp.config;
+package org.example.codefox.titleratingsapp.config;
 
 import org.example.codefox.adapterpersistencereactivedataflux.adapter.AdapterPersistenceDataReactive;
 import org.example.codefox.crudreactiveserviceadapter.adapter.ReactorServiceAdapter;
 import org.example.codefox.crudreactiveserviceadapter.processing.DefaultServiceReactorProcessor;
-import org.example.codefox.domainnamebasics.mapper.NameBasicsMapper;
-import org.example.codefox.domainnamebasics.model.NameBasics;
-import org.example.codefox.domainnamebasics.repositories.NameBasicsRepository;
+import org.example.codefox.domaintitleratings.mapper.TitleRatingsMapper;
+import org.example.codefox.domaintitleratings.model.TitleRatings;
+import org.example.codefox.domaintitleratings.repositories.TitleRatingsRepository;
 import org.example.codefox.spipersistenceport.spi.IDefaultPersistPort;
 import org.example.codefox.spiserviceadapter.functional.IBiArgConsumerFunctionalInterface;
 import org.example.codefox.spiserviceadapter.functional.IBiArgFunctionalInterface;
@@ -35,36 +35,36 @@ import java.util.stream.Stream;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 @Configuration
-@EnableReactiveMongoRepositories("org.example.codefox.domainnamebasics.repositories")
-@EntityScan("org.example.codefox.domainnamebasics.model")
+@EnableReactiveMongoRepositories("org.example.codefox.domaintitleratings.repositories")
+@EntityScan("org.example.codefox.domaintitleratings.model")
 @ComponentScan({
-        "org.example.codefox.domainnamebasics.mapper",
+        "org.example.codefox.domaintitleratings.mapper",
         "org.example.codefox.domaincommons.mapper"})
 public class AppConfiguration
         implements AApplicationConfiguration<
-        NameBasics,
+        TitleRatings,
         UUID,
-        NameBasics,
-        Flux<NameBasics>,
-        Mono<NameBasics>,
-        NameBasicsMapper,
-        NameBasicsRepository> {
+        TitleRatings,
+        Flux<TitleRatings>,
+        Mono<TitleRatings>,
+        TitleRatingsMapper,
+        TitleRatingsRepository> {
     /**
-     * @param e NameBasics object to wrap
-     * @return Mono<NameBasics>
+     * @param e object to wrap
+     * @return Mono<TitleRatings>
      */
     @Override
-    public Mono<NameBasics> wrap(final NameBasics e) {
+    public Mono<TitleRatings> wrap(final TitleRatings e) {
         return Mono.just(e);
     }
 
     /**
-     * @param e      source data object
-     * @param f      destination data object
-     * @param action Action to perform on e,f
+     * @param e      TitleRatings object source data
+     * @param f      Mono of TitleRatings destination data entity
+     * @param action Action to apply to e,f
      */
     @Override
-    public void executeIfPresent(final NameBasics e, final Mono<NameBasics> f, final IBiArgConsumerFunctionalInterface<NameBasics, NameBasics> action) {
+    public void executeIfPresent(final TitleRatings e, final Mono<TitleRatings> f, final IBiArgConsumerFunctionalInterface<TitleRatings, TitleRatings> action) {
         f.doOnNext(entity -> action.apply(e, entity));
     }
 
@@ -78,70 +78,71 @@ public class AppConfiguration
     }
 
     /**
-     * @param repository                            NameBasicsRepository bean
+     * @param repository                            TitleRatingsRepository bean
      * @param propertyExceptionMessageConfiguration propertyExceptionMessageConfiguration bean
-     * @return IDefaultPersistPort<NameBasics, UUID, Flux < NameBasics>, Mono<NameBasics>>
+     * @return IDefaultPersistPort<TitleRatings, UUID, Flux < TitleRatings>, Mono<TitleRatings>>
      */
     @Override
     @Bean
-    public IDefaultPersistPort<NameBasics, UUID, Flux<NameBasics>, Mono<NameBasics>> defaultPersistPort(final NameBasicsRepository repository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
+    public IDefaultPersistPort<TitleRatings, UUID, Flux<TitleRatings>, Mono<TitleRatings>> defaultPersistPort(final TitleRatingsRepository repository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
         return new AdapterPersistenceDataReactive<>(repository, propertyExceptionMessageConfiguration);
     }
 
     /**
      * @param defaultPersistPort                    defaultPersistPort bean
      * @param propertyExceptionMessageConfiguration propertyExceptionMessageConfiguration bean
-     * @return IServiceCrudProcessor<NameBasics, UUID, NameBasics, Flux < NameBasics>, Mono<NameBasics>>
+     * @return IServiceCrudProcessor<TitleRatings, UUID, TitleRatings, Flux < TitleRatings>, Mono<TitleRatings>>
      */
     @Override
     @Bean
-    public IServiceCrudProcessor<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> crudRestServiceCrudProcessorPoleEntity(final IDefaultPersistPort<NameBasics, UUID, Flux<NameBasics>, Mono<NameBasics>> defaultPersistPort, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
+    public IServiceCrudProcessor<TitleRatings, UUID, TitleRatings, Flux<TitleRatings>, Mono<TitleRatings>> crudRestServiceCrudProcessorPoleEntity(final IDefaultPersistPort<TitleRatings, UUID, Flux<TitleRatings>, Mono<TitleRatings>> defaultPersistPort, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
         return new DefaultServiceReactorProcessor<>(defaultPersistPort, propertyExceptionMessageConfiguration);
     }
 
     /**
      * @param defaultServiceRestProcessor defaultServiceRestProcessor bean
-     * @param dtoToOptionalEntityFunc dtoToOptionalEntityFunc bean
-     * @param dtoToStreamEntityFunc dtoToStreamEntityFunc bean
-     * @param entityToEntityFunc entityToEntityFunc bean
-     * @return IDefaultCrudServicePort<NameBasics, UUID, NameBasics, Flux < NameBasics>, Mono<NameBasics>>
+     * @param dtoToOptionalEntityFunc     dtoToOptionalEntityFunc bean
+     * @param dtoToStreamEntityFunc       dtoToStreamEntityFunc bean
+     * @param entityToEntityFunc          entityToEntityFunc bean
+     * @return IDefaultCrudServicePort<TitleRatings, UUID, TitleRatings, Flux < TitleRatings>, Mono<TitleRatings>>
      */
     @Override
     @Bean
-    public IDefaultCrudServicePort<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> defaultCrudServicePort(final IServiceCrudProcessor<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> defaultServiceRestProcessor, final ISingleArgFunctionalInterface<NameBasics, Mono<NameBasics>> dtoToOptionalEntityFunc, final ISingleArgFunctionalInterface<NameBasics, Stream<NameBasics>> dtoToStreamEntityFunc, final IBiArgFunctionalInterface<NameBasics, Mono<NameBasics>> entityToEntityFunc) {
+    public IDefaultCrudServicePort<TitleRatings, UUID, TitleRatings, Flux<TitleRatings>, Mono<TitleRatings>> defaultCrudServicePort(final IServiceCrudProcessor<TitleRatings, UUID, TitleRatings, Flux<TitleRatings>, Mono<TitleRatings>> defaultServiceRestProcessor, final ISingleArgFunctionalInterface<TitleRatings, Mono<TitleRatings>> dtoToOptionalEntityFunc, final ISingleArgFunctionalInterface<TitleRatings, Stream<TitleRatings>> dtoToStreamEntityFunc, final IBiArgFunctionalInterface<TitleRatings, Mono<TitleRatings>> entityToEntityFunc) {
         return new ReactorServiceAdapter<>(defaultServiceRestProcessor, dtoToOptionalEntityFunc, dtoToStreamEntityFunc, entityToEntityFunc);
     }
 
     /**
-     * @param mapper NameBasicsMapper bean
-     * @return ISingleArgFunctionalInterface<NameBasics, Mono < NameBasics>>
+     * @param mapper TitleRatingsMapper bean
+     * @return ISingleArgFunctionalInterface<TitleRatings, Mono < TitleRatings>>
      */
     @Override
     @Bean
     @Qualifier("ISingleArgFunctionalInterfaceCSTREAM")
-    public ISingleArgFunctionalInterface<NameBasics, Mono<NameBasics>> optionalIFunctionalMapper(final NameBasicsMapper mapper) {
+    public ISingleArgFunctionalInterface<TitleRatings, Mono<TitleRatings>> optionalIFunctionalMapper(final TitleRatingsMapper mapper) {
         return dto -> wrap(mapper.toEntity(dto));
     }
 
     /**
-     * @param mapper NameBasicsMapper bean
-     * @return ISingleArgFunctionalInterface<NameBasics, Stream < NameBasics>>
+     * @param mapper TitleRatingsMapper bean
+     * @return ISingleArgFunctionalInterface<TitleRatings, Stream < TitleRatings>>
      */
     @Override
     @Bean
     @Qualifier("ISingleArgFunctionalInterfaceCE")
-    public ISingleArgFunctionalInterface<NameBasics, Stream<NameBasics>> dtoToStreamEntityFunc(final NameBasicsMapper mapper) {
+    public ISingleArgFunctionalInterface<TitleRatings, Stream<TitleRatings>> dtoToStreamEntityFunc(final TitleRatingsMapper mapper) {
         return dto -> Stream.of(mapper.toEntity(dto));
     }
 
     /**
-     * @param mapper NameBasicsMapper bean
-     * @return IBiArgFunctionalInterface<NameBasics, Mono < NameBasics>>
+     * @param mapper TitleRatingsMapper bean
+     * @return IBiArgFunctionalInterface<TitleRatings, Mono < TitleRatings>>
      */
     @Override
     @Bean
-    public IBiArgFunctionalInterface<NameBasics, Mono<NameBasics>> dtoToEntityBiArgFunc(final NameBasicsMapper mapper) {
+    public IBiArgFunctionalInterface<TitleRatings, Mono<TitleRatings>> dtoToEntityBiArgFunc(final TitleRatingsMapper mapper) {
         return (entitySource, entityDestination) -> {
+
             executeIfPresent(entitySource, entityDestination, mapper::update);
             return entityDestination;
         };

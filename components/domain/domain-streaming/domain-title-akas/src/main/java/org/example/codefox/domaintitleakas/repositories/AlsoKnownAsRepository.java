@@ -1,4 +1,4 @@
-package org.example.codefox.domaintitleakas.repository;
+package org.example.codefox.domaintitleakas.repositories;
 
 import org.example.codefox.domaintitleakas.model.AlsoKnownAs;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;

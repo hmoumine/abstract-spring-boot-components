@@ -94,9 +94,9 @@ public class ApplicationConfiguration
     }
 
     /**
-     * @param defaultPersistPort
-     * @param propertyExceptionMessageConfiguration
-     * @return
+     * @param defaultPersistPort                    defaultPersistPort bean
+     * @param propertyExceptionMessageConfiguration propertyExceptionMessageConfiguration bean
+     * @return IServiceCrudProcessor<PoleEntity, UUID, PoleEntity, Flux < PoleEntity>, Mono<PoleEntity>>
      */
     @Override
     @Bean
@@ -108,11 +108,11 @@ public class ApplicationConfiguration
     }
 
     /**
-     * @param defaultServiceRestProcessor
-     * @param dtoToOptionalEntityFunc
-     * @param dtoToStreamEntityFunc
-     * @param entityToEntityFunc
-     * @return
+     * @param defaultServiceRestProcessor defaultServiceRestProcessor bean
+     * @param dtoToOptionalEntityFunc     dtoToOptionalEntityFunc bean
+     * @param dtoToStreamEntityFunc       dtoToStreamEntityFunc bean
+     * @param entityToEntityFunc          entityToEntityFunc bean
+     * @return IDefaultCrudServicePort<PoleEntity, UUID, PoleEntity, Flux < PoleEntity>, Mono<PoleEntity>>
      */
     @Override
     @Bean
@@ -126,8 +126,8 @@ public class ApplicationConfiguration
     }
 
     /**
-     * @param mapper
-     * @return
+     * @param mapper PoleMapper bean
+     * @return ISingleArgFunctionalInterface<Pole, Mono < PoleEntity>>
      */
     @Override
     @Bean
@@ -136,8 +136,8 @@ public class ApplicationConfiguration
     }
 
     /**
-     * @param mapper
-     * @return
+     * @param mapper PoleMapper bean
+     * @return ISingleArgFunctionalInterface<Pole, Stream < PoleEntity>>
      */
     @Override
     @Bean
@@ -146,8 +146,8 @@ public class ApplicationConfiguration
     }
 
     /**
-     * @param mapper
-     * @return
+     * @param mapper PoleMapper bean
+     * @return IBiArgFunctionalInterface<Pole, Mono < PoleEntity>>
      */
     @Override
     @Bean

@@ -15,6 +15,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>domain-title-crew</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>spring-app-abstract-crud-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>adapter-persistence-reactive-data-flux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>crud-reactive-service-adapter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.example.codefox</groupId>
+            <artifactId>adapter-reactive-controller</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>
