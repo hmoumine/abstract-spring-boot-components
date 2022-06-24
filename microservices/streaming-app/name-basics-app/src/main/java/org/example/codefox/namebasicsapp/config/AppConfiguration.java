@@ -23,7 +23,6 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
 import java.util.stream.Stream;
 
 /**
@@ -43,7 +42,7 @@ import java.util.stream.Stream;
 public class AppConfiguration
         implements AApplicationConfiguration<
         NameBasics,
-        UUID,
+        String,
         NameBasics,
         Flux<NameBasics>,
         Mono<NameBasics>,
@@ -80,35 +79,35 @@ public class AppConfiguration
     /**
      * @param repository                            NameBasicsRepository bean
      * @param propertyExceptionMessageConfiguration propertyExceptionMessageConfiguration bean
-     * @return IDefaultPersistPort<NameBasics, UUID, Flux < NameBasics>, Mono<NameBasics>>
+     * @return IDefaultPersistPort<NameBasics, String, Flux < NameBasics>, Mono<NameBasics>>
      */
     @Override
     @Bean
-    public IDefaultPersistPort<NameBasics, UUID, Flux<NameBasics>, Mono<NameBasics>> defaultPersistPort(final NameBasicsRepository repository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
+    public IDefaultPersistPort<NameBasics, String, Flux<NameBasics>, Mono<NameBasics>> defaultPersistPort(final NameBasicsRepository repository, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
         return new AdapterPersistenceDataReactive<>(repository, propertyExceptionMessageConfiguration);
     }
 
     /**
      * @param defaultPersistPort                    defaultPersistPort bean
      * @param propertyExceptionMessageConfiguration propertyExceptionMessageConfiguration bean
-     * @return IServiceCrudProcessor<NameBasics, UUID, NameBasics, Flux < NameBasics>, Mono<NameBasics>>
+     * @return IServiceCrudProcessor<NameBasics, String, NameBasics, Flux < NameBasics>, Mono<NameBasics>>
      */
     @Override
     @Bean
-    public IServiceCrudProcessor<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> crudRestServiceCrudProcessorPoleEntity(final IDefaultPersistPort<NameBasics, UUID, Flux<NameBasics>, Mono<NameBasics>> defaultPersistPort, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
+    public IServiceCrudProcessor<NameBasics, String, NameBasics, Flux<NameBasics>, Mono<NameBasics>> crudRestServiceCrudProcessorPoleEntity(final IDefaultPersistPort<NameBasics, String, Flux<NameBasics>, Mono<NameBasics>> defaultPersistPort, final PropertyExceptionMessageConfiguration propertyExceptionMessageConfiguration) {
         return new DefaultServiceReactorProcessor<>(defaultPersistPort, propertyExceptionMessageConfiguration);
     }
 
     /**
      * @param defaultServiceRestProcessor defaultServiceRestProcessor bean
-     * @param dtoToOptionalEntityFunc dtoToOptionalEntityFunc bean
-     * @param dtoToStreamEntityFunc dtoToStreamEntityFunc bean
-     * @param entityToEntityFunc entityToEntityFunc bean
-     * @return IDefaultCrudServicePort<NameBasics, UUID, NameBasics, Flux < NameBasics>, Mono<NameBasics>>
+     * @param dtoToOptionalEntityFunc     dtoToOptionalEntityFunc bean
+     * @param dtoToStreamEntityFunc       dtoToStreamEntityFunc bean
+     * @param entityToEntityFunc          entityToEntityFunc bean
+     * @return IDefaultCrudServicePort<NameBasics, String, NameBasics, Flux < NameBasics>, Mono<NameBasics>>
      */
     @Override
     @Bean
-    public IDefaultCrudServicePort<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> defaultCrudServicePort(final IServiceCrudProcessor<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> defaultServiceRestProcessor, final ISingleArgFunctionalInterface<NameBasics, Mono<NameBasics>> dtoToOptionalEntityFunc, final ISingleArgFunctionalInterface<NameBasics, Stream<NameBasics>> dtoToStreamEntityFunc, final IBiArgFunctionalInterface<NameBasics, Mono<NameBasics>> entityToEntityFunc) {
+    public IDefaultCrudServicePort<NameBasics, String, NameBasics, Flux<NameBasics>, Mono<NameBasics>> defaultCrudServicePort(final IServiceCrudProcessor<NameBasics, String, NameBasics, Flux<NameBasics>, Mono<NameBasics>> defaultServiceRestProcessor, final ISingleArgFunctionalInterface<NameBasics, Mono<NameBasics>> dtoToOptionalEntityFunc, final ISingleArgFunctionalInterface<NameBasics, Stream<NameBasics>> dtoToStreamEntityFunc, final IBiArgFunctionalInterface<NameBasics, Mono<NameBasics>> entityToEntityFunc) {
         return new ReactorServiceAdapter<>(defaultServiceRestProcessor, dtoToOptionalEntityFunc, dtoToStreamEntityFunc, entityToEntityFunc);
     }
 

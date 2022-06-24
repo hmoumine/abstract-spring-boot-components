@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
  * @see <a href="h.moumine@outlook.com">h.moumine@outlook.com</a>
  * @see <a href="https://www.linkedin.com/in/hamza-moumine">LinkedIn Profile</a>
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
- */
-
-/**
  *
  * @param <F> Entity type
  * @param <I> Entity identifier type
@@ -59,7 +56,7 @@ public interface IDefaultControllerPort<F, I, M, O> {
      * @return Identified entity as optional
      */
     @GetMapping(path = {"/public/{id}", "/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    O getById(I id);
+    O getById(@PathVariable("id") I id);
 
     /**
      * Retrieves all entities on database as iterable

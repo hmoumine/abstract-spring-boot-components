@@ -1,6 +1,8 @@
 package org.example.codefox.domainnamebasics.model;
 
 import lombok.*;
+import lombok.extern.jackson.Jacksonized;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -16,10 +18,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Builder
+@Jacksonized
 @AllArgsConstructor
 public class NameBasics {
 
-    private String nConst;
+    @Id
+    private String id;
 
     private String primaryName;
 

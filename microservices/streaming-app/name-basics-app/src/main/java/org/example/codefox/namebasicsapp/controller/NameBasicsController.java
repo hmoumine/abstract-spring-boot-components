@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
 /**
  * Class {@code NameBasicsController} provides [...]
  *
@@ -18,8 +16,8 @@ import java.util.UUID;
  * @see <a href="https://consort-group.com/">Employed by Consort NT Group</a>
  */
 @RestController
-public class NameBasicsController extends DefaultReactorControllerAdapter<NameBasics, UUID, NameBasics> {
-    public NameBasicsController(final IDefaultCrudServicePort<NameBasics, UUID, NameBasics, Flux<NameBasics>, Mono<NameBasics>> iDefaultCrudServicePort) {
+public class NameBasicsController extends DefaultReactorControllerAdapter<NameBasics, String, NameBasics> {
+    public NameBasicsController(final IDefaultCrudServicePort<NameBasics, String, NameBasics, Flux<NameBasics>, Mono<NameBasics>> iDefaultCrudServicePort) {
         super(iDefaultCrudServicePort);
     }
 }
